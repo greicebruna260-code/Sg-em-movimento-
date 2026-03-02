@@ -3,42 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>SG EM MOVIMENTO - PERFEIÇÃO V1</title>
+    <title>SG EM MOVIMENTO</title>
+    
+    <link rel="icon" type="image/png" href="icon.png">
+    <link rel="apple-touch-icon" href="icon.png">
+    <meta name="theme-color" content="#0056b3">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root { --main: #0056b3; --dark: #002d5e; --bg: #f0f2f5; --success: #2ecc71; --danger: #e74c3c; }
         * { box-sizing: border-box; transition: 0.2s; -webkit-tap-highlight-color: transparent; }
         body { font-family: 'Segoe UI', sans-serif; background: var(--bg); margin: 0; overflow-x: hidden; }
-        
         .screen { display: none; min-height: 100vh; width: 100%; flex-direction: column; }
         .screen.active { display: flex; }
         .hidden { display: none !important; }
-        
-        /* LOGIN ORIGINAL APROVADO */
         .login-wrap { display: flex; align-items: center; justify-content: center; height: 100vh; background: linear-gradient(135deg, var(--main) 0%, var(--dark) 100%); padding: 20px; }
         .login-card { background: #fff; width: 100%; max-width: 360px; padding: 40px 30px; border-radius: 30px; box-shadow: 0 15px 35px rgba(0,0,0,0.3); text-align: center; }
-        
-        /* HEADER E CONTAINER */
         .header { background: var(--main); color: white; padding: 30px 20px; text-align: center; border-radius: 0 0 30px 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
         .container { padding: 20px; max-width: 500px; margin: auto; width: 100%; }
         .card { background: #fff; padding: 20px; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 20px; position: relative; }
-        
-        /* BOTÕES E INPUTS */
         input, textarea, select { width: 100%; padding: 15px; margin-bottom: 12px; border-radius: 12px; border: 1px solid #ddd; font-size: 16px; outline: none; }
         button { width: 100%; padding: 16px; border: none; border-radius: 15px; background: var(--main); color: #fff; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; }
         .btn-choice { background: #fff; color: var(--main); border: 2px solid var(--main); height: 80px; margin-bottom: 15px; }
         .btn-admin { background: #1a1a1a; color: white; border: none; }
         .btn-sec { background: #dee2e6; color: #333; margin-top: 15px; }
-
-        /* TAREFAS E AUDITORIA */
         .task-item { border-left: 8px solid var(--main); padding: 15px; margin-bottom: 15px; background: #fff; border-radius: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
         .timer-val { font-family: monospace; font-size: 1.4rem; color: var(--danger); font-weight: bold; display: block; margin: 10px 0; }
         .audit-img { width: 100%; border-radius: 15px; margin-top: 10px; border: 1px solid #ddd; }
         .profile-img { width: 100px; height: 100px; border-radius: 50%; border: 4px solid #fff; object-fit: cover; background: #ddd; margin: -50px auto 15px; display: block; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-        
-        /* CORES PERSONALIZAÇÃO */
         .color-opt { width: 40px; height: 40px; border-radius: 50%; cursor: pointer; border: 3px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
-
         .modal { position: fixed; inset: 0; background: rgba(0,0,0,0.8); display: none; align-items: center; justify-content: center; z-index: 3000; padding: 15px; }
         .modal-content { background: #fff; width: 100%; max-width: 450px; border-radius: 30px; padding: 20px; max-height: 85vh; overflow-y: auto; }
     </style>
@@ -60,7 +55,7 @@
     </div>
 
     <div id="screen-choice" class="screen">
-        <div class="header"><h1>PAINEL PRINCIPAL</h1></div>
+        <div class="header"><h1>OLÁ!</h1></div>
         <div class="container" style="margin-top:20px">
             <div id="admin-area" class="hidden">
                 <button onclick="nav('admin')" class="btn-choice btn-admin"><i class="fas fa-crown"></i> GESTÃO DE EQUIPE</button>
@@ -78,32 +73,182 @@
                 <button onclick="tab('escala')" id="b-escala" style="flex:1;">ROTINA</button>
                 <button onclick="tab('perfil')" id="b-perfil" style="flex:1; background:#888;">PERFIL</button>
             </div>
-            
             <div id="t-escala">
-                <div id="mural-display" class="card hidden" style="background:#fff9c4; border-left:5px solid #fbc02d; padding:15px; font-size:0.85rem"></div>
+                <div id="mural-display" class="card hidden" style="background:#fff9c4; border-left:5px solid #fbc02d; font-size:0.85rem"></div>
                 <div class="card" style="text-align:center;"><button onclick="baterPonto()" style="background:var(--success);"><i class="fas fa-clock"></i> REGISTRAR PONTO</button></div>
                 <div id="tasks-list-user"></div>
             </div>
-
             <div id="t-perfil" class="hidden">
                 <div class="card">
-                    <h3>Personalizar App</h3>
-                    <input type="text" id="p-foto" placeholder="Link da sua Foto">
+                    <h3>Personalizar</h3>
+                    <input type="text" id="p-foto" placeholder="Link da Foto">
                     <input type="password" id="p-senha" placeholder="Trocar Senha">
-                    <label style="font-size: 0.9rem; margin-bottom: 5px; display: block;">Cor do Tema:</label>
-                    <div style="display:grid; grid-template-columns: repeat(5, 1fr); gap:10px; justify-items:center; margin:15px 0;">
+                    <div style="display:grid; grid-template-columns: repeat(5, 1fr); gap:10px; margin:15px 0;">
                         <div class="color-opt" style="background:#0056b3" onclick="setTema('#0056b3')"></div>
                         <div class="color-opt" style="background:#2ecc71" onclick="setTema('#2ecc71')"></div>
                         <div class="color-opt" style="background:#e91e63" onclick="setTema('#e91e63')"></div>
                         <div class="color-opt" style="background:#8e44ad" onclick="setTema('#8e44ad')"></div>
                         <div class="color-opt" style="background:#1a1a1a" onclick="setTema('#1a1a1a')"></div>
-                        <div class="color-opt" style="background:#f39c12" onclick="setTema('#f39c12')"></div>
-                        <div class="color-opt" style="background:#e74c3c" onclick="setTema('#e74c3c')"></div>
-                        <div class="color-opt" style="background:#f1c40f" onclick="setTema('#f1c40f')"></div>
-                        <div class="color-opt" style="background:#1abc9c" onclick="setTema('#1abc9c')"></div>
-                        <div class="color-opt" style="background:#7f8c8d" onclick="setTema('#7f8c8d')"></div>
                     </div>
-                    <button onclick="salvarPerfil()">SALVAR ALTERAÇÕES</button>
+                    <button onclick="salvarPerfil()">SALVAR</button>
+                </div>
+            </div>
+            <button onclick="showScreen('screen-choice')" class="btn-sec">Voltar</button>
+        </div>
+    </div>
+
+    <div id="screen-admin" class="screen">
+        <div class="header"><h1>GERÊNCIA</h1></div>
+        <div class="container">
+            <div style="display:flex; gap:10px; margin-bottom:20px;">
+                <button onclick="tabAdm('gestao')" id="b-gestao" style="flex:1.2; font-size:0.8rem">EQUIPE / MURAL</button>
+                <button onclick="tabAdm('fotos')" id="b-fotos" style="flex:1; background:#888; font-size:0.8rem">AUDITORIA FOTOS</button>
+            </div>
+            <div id="t-gestao">
+                <div class="card">
+                    <h4>Mural de Avisos</h4>
+                    <textarea id="msg-mural" placeholder="Escreva o aviso geral..."></textarea>
+                    <button onclick="postarMural()" style="background:#f39c12">POSTAR</button>
+                </div>
+                <div class="card">
+                    <h4>Novo Cadastro</h4>
+                    <input type="text" id="reg-name" placeholder="Nome">
+                    <input type="email" id="reg-email" placeholder="E-mail">
+                    <input type="password" id="reg-pass" placeholder="Senha">
+                    <select id="reg-role"><option value="user">Funcionário</option><option value="admin">Gerente</option></select>
+                    <button onclick="cadastrarUsuario()">CADASTRAR</button>
+                </div>
+                <div class="card">
+                    <h4>Enviar Tarefa</h4>
+                    <select id="sel-user-task"></select>
+                    <textarea id="task-desc" placeholder="Descreva a tarefa..."></textarea>
+                    <button onclick="enviarTarefa()">ENVIAR TAREFA</button>
+                </div>
+                <div id="team-list"></div>
+            </div>
+            <div id="t-fotos" class="hidden"><div id="audit-list"></div></div>
+            <button onclick="showScreen('screen-choice')" class="btn-sec">Voltar</button>
+        </div>
+    </div>
+
+    <div id="modal-finish" class="modal">
+        <div class="modal-content">
+            <h3>Finalizar Tarefa</h3>
+            <p id="f-timer-val" style="font-weight:bold; color:var(--danger);"></p>
+            <img id="preview-img" style="width:100%; border-radius:15px; display:none; margin-bottom:15px;">
+            <input type="file" id="file-input" accept="image/*" capture="camera" hidden onchange="processPhoto(this)">
+            <button onclick="document.getElementById('file-input').click()" style="background:var(--dark); margin-bottom:10px;">TIRAR FOTO</button>
+            <button id="btn-confirm-task" class="hidden" onclick="confirmarConclusao()" style="background:var(--success);">ENVIAR PROVA</button>
+            <button onclick="closeModals()" class="btn-sec">CANCELAR</button>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+
+    <script>
+        const firebaseConfig = { apiKey: "AIzaSyCKq_Vv_Ju8AXxQtJrf5jmvxzN4fmVWoxA", authDomain: "sg-em-movimento.firebaseapp.com", projectId: "sg-em-movimento", storageBucket: "sg-em-movimento.firebasestorage.app", messagingSenderId: "494975014065", appId: "1:494975014065:web:948d73882c260478dcbe90" };
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth(), db = firebase.firestore();
+        let activeTimers = {}, currentTask = null, photoBase64 = "", temaAtual = "#0056b3";
+
+        auth.onAuthStateChanged(user => {
+            if (user) {
+                db.collection('users').doc(user.uid).onSnapshot(doc => {
+                    if (doc.exists) {
+                        const d = doc.data();
+                        if(d.role === 'admin') document.getElementById('admin-area').classList.remove('hidden');
+                        if(d.tema) setTema(d.tema);
+                        document.getElementById('user-photo').src = d.foto || "https://cdn-icons-png.flaticon.com/512/149/149071.png";
+                        showScreen('screen-choice');
+                    }
+                });
+            } else { showScreen('screen-login'); }
+        });
+
+        async function handleLogin() {
+            const e = document.getElementById('email').value.trim(), p = document.getElementById('password').value;
+            try { await auth.signInWithEmailAndPassword(e, p); } catch(err) { alert("Erro de acesso."); }
+        }
+
+        function setTema(cor) { temaAtual = cor; document.documentElement.style.setProperty('--main', cor); }
+        function showScreen(id) { document.querySelectorAll('.screen').forEach(s => s.classList.remove('active')); document.getElementById(id).classList.add('active'); }
+        function nav(m) { if(m==='admin'){showScreen('screen-admin'); carregarEquipe(); carregarAuditoria(); carregarUsuariosSelect();} else {showScreen('screen-user'); ouvirTarefas(); carregarMural();} }
+        function tab(t) { document.getElementById('t-escala').classList.toggle('hidden', t !== 'escala'); document.getElementById('t-perfil').classList.toggle('hidden', t !== 'perfil'); document.getElementById('b-escala').style.background = t === 'escala' ? 'var(--main)' : '#888'; document.getElementById('b-perfil').style.background = t === 'perfil' ? 'var(--main)' : '#888'; }
+        function tabAdm(t) { document.getElementById('t-gestao').classList.toggle('hidden', t !== 'gestao'); document.getElementById('t-fotos').classList.toggle('hidden', t !== 'fotos'); document.getElementById('b-gestao').style.background = t === 'gestao' ? 'var(--main)' : '#888'; document.getElementById('b-fotos').style.background = t === 'fotos' ? 'var(--main)' : '#888'; }
+        function togglePass(id) { const p = document.getElementById(id); p.type = p.type === 'password' ? 'text' : 'password'; }
+        function sair() { auth.signOut().then(() => location.reload()); }
+
+        function ouvirTarefas() {
+            db.collection('tasks').where("uid", "==", auth.currentUser.uid).onSnapshot(snap => {
+                const list = document.getElementById('tasks-list-user'); list.innerHTML = "";
+                snap.forEach(doc => {
+                    const t = doc.data(), id = doc.id, done = t.status === 'concluida', run = t.status === 'rodando';
+                    list.innerHTML += `<div class="task-item" style="border-left-color:${done ? 'var(--success)' : (run ? 'var(--danger)' : 'var(--main)')}">
+                        <strong>${t.desc}</strong><br>
+                        ${done ? `<span style="color:var(--success); font-weight:bold;">CONCLUÍDA (${t.duration})</span>` : 
+                        (run ? `<span class="timer-val" id="timer-${id}">00:00:00</span><button onclick="abrirFim('${id}')" style="background:var(--danger)">FINALIZAR AGORA</button>` : 
+                        `<button onclick="iniciarT('${id}')" style="background:var(--success); margin-top:10px;">INICIAR TAREFA</button>`)}
+                    </div>`;
+                    if(run) monitorarTimer(id, t.startTime);
+                });
+            });
+        }
+        function monitorarTimer(id, start) {
+            if(activeTimers[id]) clearInterval(activeTimers[id]);
+            activeTimers[id] = setInterval(() => {
+                const diff = Date.now() - start;
+                const h = Math.floor(diff/3600000).toString().padStart(2,'0'), m = Math.floor((diff%3600000)/60000).toString().padStart(2,'0'), s = Math.floor((diff%60000)/1000).toString().padStart(2,'0');
+                const el = document.getElementById(`timer-${id}`); if(el) el.innerText = `${h}:${m}:${s}`;
+            }, 1000);
+        }
+        async function iniciarT(id) { await db.collection('tasks').doc(id).update({ status: 'rodando', startTime: Date.now() }); }
+        function abrirFim(id) { currentTask = { id, time: document.getElementById(`timer-${id}`).innerText }; document.getElementById('f-timer-val').innerText = "Tempo Gasto: " + currentTask.time; document.getElementById('modal-finish').style.display='flex'; }
+        function processPhoto(input) { if (input.files && input.files[0]) { const reader = new FileReader(); reader.onload = e => { photoBase64 = e.target.result; document.getElementById('preview-img').src = photoBase64; document.getElementById('preview-img').style.display = 'block'; document.getElementById('btn-confirm-task').classList.remove('hidden'); }; reader.readAsDataURL(input.files[0]); } }
+        async function confirmarConclusao() {
+            const u = await db.collection('users').doc(auth.currentUser.uid).get();
+            await db.collection('tasks').doc(currentTask.id).update({ status: 'concluida', duration: currentTask.time, photo: photoBase64, finishedAt: Date.now(), userName: u.data().name });
+            clearInterval(activeTimers[currentTask.id]); closeModals(); alert("Tarefa concluída!");
+        }
+
+        async function carregarUsuariosSelect() {
+            const sel = document.getElementById('sel-user-task'); const snap = await db.collection('users').where("role","==","user").get();
+            sel.innerHTML = '<option value="">Selecionar Funcionário</option>'; snap.forEach(doc => sel.innerHTML += `<option value="${doc.id}">${doc.data().name}</option>`);
+        }
+        async function enviarTarefa() {
+            const uid = document.getElementById('sel-user-task').value, desc = document.getElementById('task-desc').value;
+            if(!uid || !desc) return alert("Preencha tudo!");
+            await db.collection('tasks').add({ uid, desc, status: 'pendente', createdAt: Date.now() });
+            document.getElementById('task-desc').value = ""; alert("Tarefa enviada!");
+        }
+        function carregarAuditoria() {
+            db.collection('tasks').where("status","==","concluida").orderBy("finishedAt","desc").onSnapshot(snap => {
+                const list = document.getElementById('audit-list'); list.innerHTML = "<h4>Últimas Provas</h4>";
+                snap.forEach(doc => { const t = doc.data(); list.innerHTML += `<div class="card"><b>${t.userName}</b>: ${t.desc}<br><small>Duração: ${t.duration}</small><img src="${t.photo}" class="audit-img"></div>`; });
+            });
+        }
+        async function carregarEquipe() {
+            const list = document.getElementById('team-list'); const snap = await db.collection('users').get(); list.innerHTML = "<h4>Equipe</h4>";
+            snap.forEach(doc => { const u = doc.data(); list.innerHTML += `<div class="card" style="display:flex; justify-content:space-between; align-items:center;"><span><b>${u.name}</b> (${u.role})</span><button onclick="deletarUser('${doc.id}')" style="background:var(--danger); width:auto; padding:8px 12px;">Excluir</button></div>`; });
+        }
+        async function deletarUser(id) { if(confirm("Excluir?")) await db.collection('users').doc(id).delete(); carregarEquipe(); }
+
+        async function salvarPerfil() {
+            const u = auth.currentUser, foto = document.getElementById('p-foto').value, senha = document.getElementById('p-senha').value;
+            await db.collection('users').doc(u.uid).update({ foto, tema: temaAtual });
+            if(senha.length >= 6) await u.updatePassword(senha);
+            alert("Salvo!");
+        }
+        async function baterPonto() { await db.collection('users').doc(auth.currentUser.uid).update({ ponto: new Date().toLocaleString() }); alert("Ponto OK!"); }
+        function carregarMural() { db.collection('config').doc('mural').onSnapshot(doc => { if(doc.exists) { const m = document.getElementById('mural-display'); m.innerHTML = "<b>AVISO:</b><br>" + doc.data().aviso; m.classList.remove('hidden'); } }); }
+        async function postarMural() { await db.collection('config').doc('mural').set({ aviso: document.getElementById('msg-mural').value }); alert("Postado!"); }
+        async function cadastrarUsuario() { const n = document.getElementById('reg-name').value, e = document.getElementById('reg-email').value, p = document.getElementById('reg-pass').value, r = document.getElementById('reg-role').value; await db.collection('users').add({ name: n, email: e, role: r }); alert("Cadastrado!"); carregarEquipe(); }
+        function closeModals() { document.querySelectorAll('.modal').forEach(m => m.style.display = 'none'); document.getElementById('preview-img').style.display = 'none'; document.getElementById('btn-confirm-task').classList.add('hidden'); }
+    </script>
+</body>
+    </html>
+                        <button onclick="salvarPerfil()">SALVAR ALTERAÇÕES</button>
                 </div>
             </div>
             <button onclick="showScreen('screen-choice')" class="btn-sec">Voltar</button>
