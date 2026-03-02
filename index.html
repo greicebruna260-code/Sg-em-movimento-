@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>SG EM MOVIMENTO - VERSÃO SUPREMA UNIFICADA</title>
+    <title>SG EM MOVIMENTO - PERFEIÇÃO V1</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root { --main: #0056b3; --dark: #002d5e; --bg: #f0f2f5; --success: #2ecc71; --danger: #e74c3c; }
@@ -35,7 +35,9 @@
         .timer-val { font-family: monospace; font-size: 1.4rem; color: var(--danger); font-weight: bold; display: block; margin: 10px 0; }
         .audit-img { width: 100%; border-radius: 15px; margin-top: 10px; border: 1px solid #ddd; }
         .profile-img { width: 100px; height: 100px; border-radius: 50%; border: 4px solid #fff; object-fit: cover; background: #ddd; margin: -50px auto 15px; display: block; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-        .color-opt { width: 35px; height: 35px; border-radius: 50%; cursor: pointer; border: 2px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+        
+        /* CORES PERSONALIZAÇÃO */
+        .color-opt { width: 40px; height: 40px; border-radius: 50%; cursor: pointer; border: 3px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
 
         .modal { position: fixed; inset: 0; background: rgba(0,0,0,0.8); display: none; align-items: center; justify-content: center; z-index: 3000; padding: 15px; }
         .modal-content { background: #fff; width: 100%; max-width: 450px; border-radius: 30px; padding: 20px; max-height: 85vh; overflow-y: auto; }
@@ -63,7 +65,7 @@
             <div id="admin-area" class="hidden">
                 <button onclick="nav('admin')" class="btn-choice btn-admin"><i class="fas fa-crown"></i> GESTÃO DE EQUIPE</button>
             </div>
-            <button onclick="nav('user')" class="btn-choice"><i class="fas fa-user"></i> ÁREA DO FUNCIONÁRIO</button>
+            <button onclick="nav('user')" class="btn-choice"><i class="fas fa-walking"></i> MINHAS TAREFAS</button>
             <button onclick="sair()" class="btn-sec">Sair da Conta</button>
         </div>
     </div>
@@ -73,12 +75,12 @@
         <div class="container">
             <img src="" id="user-photo" class="profile-img">
             <div style="display:flex; gap:10px; margin-bottom:20px;">
-                <button onclick="tab('escala')" id="b-escala" style="flex:1;">TAREFAS</button>
+                <button onclick="tab('escala')" id="b-escala" style="flex:1;">ROTINA</button>
                 <button onclick="tab('perfil')" id="b-perfil" style="flex:1; background:#888;">PERFIL</button>
             </div>
             
             <div id="t-escala">
-                <div id="mural-display" class="card hidden" style="background:#fff9c4; border-left:5px solid #fbc02d; font-size:0.85rem"></div>
+                <div id="mural-display" class="card hidden" style="background:#fff9c4; border-left:5px solid #fbc02d; padding:15px; font-size:0.85rem"></div>
                 <div class="card" style="text-align:center;"><button onclick="baterPonto()" style="background:var(--success);"><i class="fas fa-clock"></i> REGISTRAR PONTO</button></div>
                 <div id="tasks-list-user"></div>
             </div>
@@ -86,13 +88,20 @@
             <div id="t-perfil" class="hidden">
                 <div class="card">
                     <h3>Personalizar App</h3>
-                    <input type="text" id="p-foto" placeholder="Link da Foto">
+                    <input type="text" id="p-foto" placeholder="Link da sua Foto">
                     <input type="password" id="p-senha" placeholder="Trocar Senha">
-                    <div style="display:flex; gap:10px; justify-content:center; margin:15px 0;">
+                    <label style="font-size: 0.9rem; margin-bottom: 5px; display: block;">Cor do Tema:</label>
+                    <div style="display:grid; grid-template-columns: repeat(5, 1fr); gap:10px; justify-items:center; margin:15px 0;">
                         <div class="color-opt" style="background:#0056b3" onclick="setTema('#0056b3')"></div>
-                        <div class="color-opt" style="background:#27ae60" onclick="setTema('#27ae60')"></div>
+                        <div class="color-opt" style="background:#2ecc71" onclick="setTema('#2ecc71')"></div>
                         <div class="color-opt" style="background:#e91e63" onclick="setTema('#e91e63')"></div>
+                        <div class="color-opt" style="background:#8e44ad" onclick="setTema('#8e44ad')"></div>
                         <div class="color-opt" style="background:#1a1a1a" onclick="setTema('#1a1a1a')"></div>
+                        <div class="color-opt" style="background:#f39c12" onclick="setTema('#f39c12')"></div>
+                        <div class="color-opt" style="background:#e74c3c" onclick="setTema('#e74c3c')"></div>
+                        <div class="color-opt" style="background:#f1c40f" onclick="setTema('#f1c40f')"></div>
+                        <div class="color-opt" style="background:#1abc9c" onclick="setTema('#1abc9c')"></div>
+                        <div class="color-opt" style="background:#7f8c8d" onclick="setTema('#7f8c8d')"></div>
                     </div>
                     <button onclick="salvarPerfil()">SALVAR ALTERAÇÕES</button>
                 </div>
@@ -105,7 +114,7 @@
         <div class="header"><h1>GERÊNCIA</h1></div>
         <div class="container">
             <div style="display:flex; gap:10px; margin-bottom:20px;">
-                <button onclick="tabAdm('gestao')" id="b-gestao" style="flex:1; font-size:0.8rem">EQUIPE / MURAL</button>
+                <button onclick="tabAdm('gestao')" id="b-gestao" style="flex:1.2; font-size:0.8rem">EQUIPE / MURAL</button>
                 <button onclick="tabAdm('fotos')" id="b-fotos" style="flex:1; background:#888; font-size:0.8rem">AUDITORIA FOTOS</button>
             </div>
 
@@ -140,11 +149,13 @@
     <div id="modal-finish" class="modal">
         <div class="modal-content">
             <h3>Finalizar Tarefa</h3>
-            <p id="f-timer-val" style="font-weight:bold; color:var(--danger);"></p>
-            <img id="preview-img" style="width:100%; border-radius:15px; display:none; margin-bottom:15px;">
+            <p id="f-timer-val" style="font-weight:bold; color:var(--danger); font-size:1.2rem;"></p>
+            <div style="text-align:center; margin-bottom:15px;">
+                <img id="preview-img" style="width:100%; border-radius:15px; display:none; border: 2px solid var(--success);">
+            </div>
             <input type="file" id="file-input" accept="image/*" capture="camera" hidden onchange="processPhoto(this)">
-            <button onclick="document.getElementById('file-input').click()" style="background:var(--dark); margin-bottom:10px;"><i class="fas fa-camera"></i> TIRAR FOTO</button>
-            <button id="btn-confirm-task" class="hidden" onclick="confirmarConclusao()" style="background:var(--success);">ENVIAR PROVA</button>
+            <button onclick="document.getElementById('file-input').click()" style="background:var(--dark); margin-bottom:10px;"><i class="fas fa-camera"></i> TIRAR FOTO DA PROVA</button>
+            <button id="btn-confirm-task" class="hidden" onclick="confirmarConclusao()" style="background:var(--success);">CONFIRMAR E ENVIAR</button>
             <button onclick="closeModals()" class="btn-sec">CANCELAR</button>
         </div>
     </div>
@@ -198,7 +209,7 @@
                         <strong>${t.desc}</strong><br>
                         ${done ? `<span style="color:var(--success); font-weight:bold;">CONCLUÍDA (${t.duration})</span>` : 
                         (run ? `<span class="timer-val" id="timer-${id}">00:00:00</span><button onclick="abrirFim('${id}')" style="background:var(--danger)">FINALIZAR AGORA</button>` : 
-                        `<button onclick="iniciarT('${id}')" style="background:var(--success); margin-top:10px;">INICIAR TAREFA</button>`)}
+                        `<button onclick="iniciarT('${id}')" style="background:var(--success); margin-top:10px;">COMEÇAR TAREFA</button>`)}
                     </div>`;
                     if(run) monitorarTimer(id, t.startTime);
                 });
@@ -213,8 +224,26 @@
             }, 1000);
         }
         async function iniciarT(id) { await db.collection('tasks').doc(id).update({ status: 'rodando', startTime: Date.now() }); }
+        
         function abrirFim(id) { currentTask = { id, time: document.getElementById(`timer-${id}`).innerText }; document.getElementById('f-timer-val').innerText = "Tempo Gasto: " + currentTask.time; document.getElementById('modal-finish').style.display='flex'; }
-        function processPhoto(input) { if (input.files && input.files[0]) { const reader = new FileReader(); reader.onload = e => { photoBase64 = e.target.result; document.getElementById('preview-img').src = photoBase64; document.getElementById('preview-img').style.display = 'block'; document.getElementById('btn-confirm-task').classList.remove('hidden'); }; reader.readAsDataURL(input.files[0]); } }
+        
+        // LÓGICA CORRIGIDA DO BOTÃO DE FOTO (V1 Perfeita)
+        function processPhoto(input) {
+            if (input.files && input.files[0]) {
+                document.getElementById('f-timer-val').innerText = "Processando imagem...";
+                const reader = new FileReader();
+                reader.onload = e => {
+                    photoBase64 = e.target.result;
+                    const img = document.getElementById('preview-img');
+                    img.src = photoBase64;
+                    img.style.display = 'block';
+                    document.getElementById('f-timer-val').innerText = "Tempo Gasto: " + currentTask.time;
+                    document.getElementById('btn-confirm-task').classList.remove('hidden');
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        
         async function confirmarConclusao() {
             const u = await db.collection('users').doc(auth.currentUser.uid).get();
             await db.collection('tasks').doc(currentTask.id).update({ status: 'concluida', duration: currentTask.time, photo: photoBase64, finishedAt: Date.now(), userName: u.data().name });
@@ -234,28 +263,10 @@
         }
         function carregarAuditoria() {
             db.collection('tasks').where("status","==","concluida").orderBy("finishedAt","desc").onSnapshot(snap => {
-                const list = document.getElementById('audit-list'); list.innerHTML = "<h4>Últimas Provas</h4>";
-                snap.forEach(doc => { const t = doc.data(); list.innerHTML += `<div class="card"><b>${t.userName}</b>: ${t.desc}<br><small>Duração: ${t.duration}</small><img src="${t.photo}" class="audit-img"></div>`; });
+                const list = document.getElementById('audit-list'); list.innerHTML = "<h4>Últimas Provas Recebidas</h4>";
+                snap.forEach(doc => { const t = doc.data(); list.innerHTML += `<div class="card"><b>${t.userName}</b>: fez: ${t.desc}<br><small>Tempo: ${t.duration}</small><img src="${t.photo}" class="audit-img"></div>`; });
             });
         }
         async function carregarEquipe() {
-            const list = document.getElementById('team-list'); const snap = await db.collection('users').get(); list.innerHTML = "<h4>Equipe</h4>";
-            snap.forEach(doc => { const u = doc.data(); list.innerHTML += `<div class="card" style="display:flex; justify-content:space-between; align-items:center;"><span><b>${u.name}</b> (${u.role})</span><button onclick="deletarUser('${doc.id}')" style="background:var(--danger); width:auto; padding:8px 12px;">Excluir</button></div>`; });
-        }
-        async function deletarUser(id) { if(confirm("Excluir?")) await db.collection('users').doc(id).delete(); carregarEquipe(); }
-
-        // PERFIL E MURAL
-        async function salvarPerfil() {
-            const u = auth.currentUser, foto = document.getElementById('p-foto').value, senha = document.getElementById('p-senha').value;
-            await db.collection('users').doc(u.uid).update({ foto, tema: temaAtual });
-            if(senha.length >= 6) await u.updatePassword(senha);
-            alert("Salvo!");
-        }
-        async function baterPonto() { await db.collection('users').doc(auth.currentUser.uid).update({ ponto: new Date().toLocaleString() }); alert("Ponto OK!"); }
-        function carregarMural() { db.collection('config').doc('mural').onSnapshot(doc => { if(doc.exists) { const m = document.getElementById('mural-display'); m.innerHTML = "<b>AVISO:</b><br>" + doc.data().aviso; m.classList.remove('hidden'); } }); }
-        async function postarMural() { await db.collection('config').doc('mural').set({ aviso: document.getElementById('msg-mural').value }); alert("Postado!"); }
-        async function cadastrarUsuario() { const n = document.getElementById('reg-name').value, e = document.getElementById('reg-email').value, p = document.getElementById('reg-pass').value, r = document.getElementById('reg-role').value; await db.collection('users').add({ name: n, email: e, role: r }); alert("Cadastrado!"); carregarEquipe(); }
-        function closeModals() { document.querySelectorAll('.modal').forEach(m => m.style.display = 'none'); document.getElementById('preview-img').style.display = 'none'; document.getElementById('btn-confirm-task').classList.add('hidden'); }
-    </script>
-</body>
-</html>
+            const list = document.getElementById('team
+        
