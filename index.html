@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>SG EM MOVIMENTO - SUPREMO</title>
+    <title>SG EM MOVIMENTO - AUTOMATIZADO</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root { --main: #0056b3; --dark: #002d5e; --bg: #f0f2f5; --success: #2ecc71; --danger: #e74c3c; }
@@ -14,23 +14,19 @@
         .screen.active { display: flex; }
         .hidden { display: none !important; }
         
-        /* LOGIN ORIGINAL */
-        .login-wrap { display: flex; align-items: center; justify-content: center; height: 100vh; background: linear-gradient(135deg, var(--main) 0%, var(--dark) 100%); padding: 20px; }
-        .login-card { background: #fff; width: 100%; max-width: 360px; padding: 40px 30px; border-radius: 30px; box-shadow: 0 15px 35px rgba(0,0,0,0.3); text-align: center; }
-        .header { background: var(--main); color: white; padding: 30px 20px; text-align: center; border-radius: 0 0 30px 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .login-wrap { display: flex; align-items: center; justify-content: center; min-height: 100vh; background: linear-gradient(135deg, var(--main) 0%, var(--dark) 100%); padding: 20px; }
+        .login-card { background: #fff; width: 100%; max-width: 380px; padding: 30px; border-radius: 30px; box-shadow: 0 15px 35px rgba(0,0,0,0.3); text-align: center; }
+        .header { background: var(--main); color: white; padding: 25px; text-align: center; border-radius: 0 0 30px 30px; }
         
         .container { padding: 20px; max-width: 500px; margin: auto; width: 100%; }
-        .card { background: #fff; padding: 20px; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 20px; position: relative; }
+        .card { background: #fff; padding: 20px; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 20px; }
         
-        input, textarea, select { width: 100%; padding: 15px; margin-bottom: 12px; border-radius: 12px; border: 1px solid #ddd; font-size: 16px; outline: none; background: #fafafa; }
+        input, textarea, select { width: 100%; padding: 14px; margin-bottom: 12px; border-radius: 12px; border: 1px solid #ddd; font-size: 16px; outline: none; background: #fafafa; }
         button { width: 100%; padding: 16px; border: none; border-radius: 15px; background: var(--main); color: #fff; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 1rem; }
-        button:active { transform: scale(0.98); }
-        .btn-choice { background: #fff; color: var(--main); border: 2px solid var(--main); height: 70px; margin-bottom: 15px; }
+        .btn-link { background: none; color: var(--main); padding: 10px; margin-top: 10px; border: 1px solid var(--main); }
         .btn-sec { background: #dee2e6; color: #333; margin-top: 15px; }
 
-        .profile-img { width: 100px; height: 100px; border-radius: 50%; border: 4px solid #fff; object-fit: cover; background: #ddd; margin: -50px auto 15px; display: block; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-        .color-opt { width: 40px; height: 40px; border-radius: 50%; cursor: pointer; border: 3px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
-        
+        .profile-img { width: 90px; height: 90px; border-radius: 50%; border: 4px solid #fff; object-fit: cover; margin: -45px auto 10px; display: block; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
         .task-item { border-left: 8px solid var(--main); padding: 15px; margin-bottom: 15px; background: #fff; border-radius: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
         .timer-val { font-family: monospace; font-size: 1.4rem; color: var(--danger); font-weight: bold; display: block; margin: 10px 0; }
         .audit-img { width: 100%; border-radius: 15px; margin-top: 10px; border: 1px solid #ddd; }
@@ -43,59 +39,45 @@
 
     <div id="screen-login" class="screen active">
         <div class="login-wrap">
-            <div class="login-card">
-                <h2 style="color:var(--main); margin-bottom:25px;">SG EM MOVIMENTO</h2>
-                <input type="email" id="email" placeholder="E-mail">
-                <div style="position:relative;">
-                    <input type="password" id="password" placeholder="Senha">
-                    <i class="fas fa-eye" style="position:absolute; right:15px; top:15px; color:#888;" onclick="togglePass('password')"></i>
-                </div>
-                <button onclick="handleLogin()" id="btn-entrar">ACESSAR SISTEMA</button>
+            <div class="login-card" id="login-box">
+                <h2 style="color:var(--main); margin-bottom:20px;">SG EM MOVIMENTO</h2>
+                <input type="email" id="email" placeholder="Seu E-mail">
+                <input type="password" id="password" placeholder="Sua Senha">
+                <button onclick="handleLogin()">ENTRAR NO SISTEMA</button>
+                <button class="btn-link" onclick="toggleAuth(true)">CRIAR MINHA CONTA (NOVO FUNCIONÁRIO)</button>
+            </div>
+            
+            <div class="login-card hidden" id="register-box">
+                <h2 style="color:var(--success); margin-bottom:20px;">NOVO CADASTRO</h2>
+                <input type="text" id="reg-name" placeholder="Seu Nome Completo">
+                <input type="email" id="reg-email" placeholder="Seu melhor E-mail">
+                <input type="password" id="reg-pass" placeholder="Crie uma Senha (mín. 6 dígitos)">
+                <button onclick="handleRegister()" style="background:var(--success)">FINALIZAR MEU CADASTRO</button>
+                <button class="btn-link" onclick="toggleAuth(false)">JÁ TENHO CONTA / VOLTAR</button>
             </div>
         </div>
     </div>
 
     <div id="screen-choice" class="screen">
-        <div class="header"><h1>OLÁ!</h1></div>
+        <div class="header"><h1>BEM-VINDO!</h1></div>
         <div class="container" style="margin-top:10px">
             <div id="admin-area" class="hidden">
                 <button onclick="nav('admin')" style="background:#1a1a1a; margin-bottom:15px; height:80px;"><i class="fas fa-crown"></i> PAINEL DO GERENTE</button>
             </div>
-            <button onclick="nav('user')" class="btn-choice"><i class="fas fa-walking"></i> MINHAS TAREFAS</button>
-            <button onclick="sair()" class="btn-sec">Sair</button>
+            <button onclick="nav('user')" class="btn-choice" style="height:80px; border:2px solid var(--main); background:#fff; color:var(--main);"><i class="fas fa-walking"></i> MINHAS TAREFAS</button>
+            <button onclick="sair()" class="btn-sec">Sair da Conta</button>
         </div>
     </div>
 
     <div id="screen-user" class="screen">
-        <div class="header" style="height: 70px;"></div>
+        <div class="header" style="height: 60px;"></div>
         <div class="container">
-            <img src="" id="user-photo" class="profile-img">
-            <div style="display:flex; gap:10px; margin-bottom:20px;">
-                <button onclick="tab('escala')" id="b-escala" style="flex:1;">ROTINA</button>
-                <button onclick="tab('perfil')" id="b-perfil" style="flex:1; background:#888;">PERFIL</button>
-            </div>
-            
+            <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" id="user-photo" class="profile-img">
             <div id="t-escala">
                 <div id="mural-display" class="card hidden" style="background:#fff9c4; border-left:5px solid #fbc02d; padding:15px; font-size:0.9rem"></div>
                 <div id="tasks-list-user"></div>
             </div>
-
-            <div id="t-perfil" class="hidden">
-                <div class="card">
-                    <h3>Personalização</h3>
-                    <input type="text" id="p-foto" placeholder="Link da sua Foto">
-                    <input type="password" id="p-senha" placeholder="Nova Senha">
-                    <p style="font-size:0.8rem; margin-bottom:10px;">Cor do Tema:</p>
-                    <div style="display:flex; gap:15px; justify-content:center; margin-bottom:20px;">
-                        <div class="color-opt" style="background:#0056b3" onclick="setTema('#0056b3')"></div>
-                        <div class="color-opt" style="background:#27ae60" onclick="setTema('#27ae60')"></div>
-                        <div class="color-opt" style="background:#e91e63" onclick="setTema('#e91e63')"></div>
-                        <div class="color-opt" style="background:#1a1a1a" onclick="setTema('#1a1a1a')"></div>
-                    </div>
-                    <button onclick="salvarPerfil()">ATUALIZAR DADOS</button>
-                </div>
-            </div>
-            <button onclick="showScreen('screen-choice')" class="btn-sec">Voltar</button>
+            <button onclick="showScreen('screen-choice')" class="btn-sec">Voltar ao Menu</button>
         </div>
     </div>
 
@@ -103,33 +85,21 @@
         <div class="header"><h1>GERÊNCIA</h1></div>
         <div class="container">
             <div style="display:flex; gap:8px; margin-bottom:20px;">
-                <button onclick="tabAdm('equipe')" id="b-equipe" style="flex:1.2; font-size:0.8rem">EQUIPE / NOVO</button>
-                <button onclick="tabAdm('fotos')" id="b-fotos" style="flex:1; background:#888; font-size:0.8rem">AUDITORIA</button>
+                <button onclick="tabAdm('equipe')" id="b-equipe" style="flex:1.2; font-size:0.9rem">EQUIPE / TAREFAS</button>
+                <button onclick="tabAdm('fotos')" id="b-fotos" style="flex:1; background:#888; font-size:0.9rem">AUDITORIA FOTOS</button>
             </div>
 
             <div id="t-equipe">
-                <div class="card" style="border-top: 5px solid var(--success);">
-                    <h4><i class="fas fa-user-plus"></i> Novo Colaborador</h4>
-                    <input type="text" id="reg-name" placeholder="Nome Completo">
-                    <input type="email" id="reg-email" placeholder="E-mail de Acesso">
-                    <input type="password" id="reg-pass" placeholder="Senha Inicial">
-                    <select id="reg-role">
-                        <option value="user">Cargo: Funcionário</option>
-                        <option value="admin">Cargo: Gerente</option>
-                    </select>
-                    <button onclick="cadastrarUsuario()" style="background:var(--success)">CADASTRAR MEMBRO</button>
-                </div>
-
                 <div class="card">
                     <h4><i class="fas fa-bullhorn"></i> Mural de Avisos</h4>
                     <textarea id="msg-mural" placeholder="Escreva o aviso para todos..."></textarea>
-                    <button onclick="postarMural()" style="background:#f39c12">ATUALIZAR MURAL</button>
+                    <button onclick="postarMural()" style="background:#f39c12">POSTAR NO MURAL</button>
                 </div>
 
                 <div class="card">
                     <h4><i class="fas fa-tasks"></i> Passar Tarefa</h4>
                     <select id="sel-user-task"></select>
-                    <textarea id="task-desc" placeholder="Descreva o que deve ser feito..."></textarea>
+                    <textarea id="task-desc" placeholder="O que deve ser feito?"></textarea>
                     <button onclick="enviarTarefa()">ENVIAR TAREFA</button>
                 </div>
                 
@@ -140,7 +110,7 @@
                 <div id="audit-list"></div>
             </div>
             
-            <button onclick="showScreen('screen-choice')" class="btn-sec">Voltar ao Menu</button>
+            <button onclick="showScreen('screen-choice')" class="btn-sec">Voltar</button>
         </div>
     </div>
 
@@ -164,16 +134,38 @@
         const firebaseConfig = { apiKey: "AIzaSyCKq_Vv_Ju8AXxQtJrf5jmvxzN4fmVWoxA", authDomain: "sg-em-movimento.firebaseapp.com", projectId: "sg-em-movimento", storageBucket: "sg-em-movimento.firebasestorage.app", messagingSenderId: "494975014065", appId: "1:494975014065:web:948d73882c260478dcbe90" };
         firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth(), db = firebase.firestore();
-        let activeTimers = {}, currentTask = null, photoBase64 = "", temaAtual = "#0056b3";
+        let activeTimers = {}, currentTask = null, photoBase64 = "";
 
-        // MONITOR DE LOGIN
+        // TELA DE AUTENTICAÇÃO
+        function toggleAuth(reg) { 
+            document.getElementById('login-box').classList.toggle('hidden', reg);
+            document.getElementById('register-box').classList.toggle('hidden', !reg);
+        }
+
+        // FUNÇÃO DE AUTOCADASTRO (AUTOMATIZA O FIREBASE AUTH)
+        async function handleRegister() {
+            const n = document.getElementById('reg-name').value, e = document.getElementById('reg-email').value, p = document.getElementById('reg-pass').value;
+            if(!n || !e || p.length < 6) return alert("Preencha todos os campos! A senha deve ter no mínimo 6 dígitos.");
+            try {
+                const res = await auth.createUserWithEmailAndPassword(e, p);
+                // Salva no banco de dados como funcionário
+                await db.collection('users').doc(res.user.uid).set({ name: n, email: e, role: 'user', createdAt: Date.now() });
+                alert("Conta criada com sucesso! Seja bem-vindo.");
+            } catch(err) { alert("Erro ao criar conta: " + err.message); }
+        }
+
+        async function handleLogin() {
+            const e = document.getElementById('email').value.trim(), p = document.getElementById('password').value;
+            if(!e || !p) return alert("Preencha e-mail e senha.");
+            try { await auth.signInWithEmailAndPassword(e, p); } catch(err) { alert("Erro ao entrar. Verifique seus dados."); }
+        }
+
         auth.onAuthStateChanged(user => {
             if (user) {
                 db.collection('users').doc(user.uid).onSnapshot(doc => {
                     if (doc.exists) {
                         const d = doc.data();
                         if(d.role === 'admin') document.getElementById('admin-area').classList.remove('hidden');
-                        if(d.tema) setTema(d.tema);
                         document.getElementById('user-photo').src = d.foto || "https://cdn-icons-png.flaticon.com/512/149/149071.png";
                         showScreen('screen-choice');
                     }
@@ -181,21 +173,12 @@
             } else { showScreen('screen-login'); }
         });
 
-        async function handleLogin() {
-            const e = document.getElementById('email').value.trim(), p = document.getElementById('password').value;
-            if(!e || !p) return alert("Preencha todos os campos!");
-            try { await auth.signInWithEmailAndPassword(e, p); } catch(err) { alert("Acesso negado. Verifique os dados."); }
-        }
-
         function showScreen(id) { document.querySelectorAll('.screen').forEach(s => s.classList.remove('active')); document.getElementById(id).classList.add('active'); }
         function nav(m) { if(m==='admin'){showScreen('screen-admin'); carregarEquipe(); carregarAuditoria(); carregarUsuariosSelect();} else {showScreen('screen-user'); ouvirTarefas(); carregarMural();} }
-        function tab(t) { document.getElementById('t-escala').classList.toggle('hidden', t !== 'escala'); document.getElementById('t-perfil').classList.toggle('hidden', t !== 'perfil'); document.getElementById('b-escala').style.background = t==='escala'?'var(--main)':'#888'; document.getElementById('b-perfil').style.background = t==='perfil'?'var(--main)':'#888'; }
-        function tabAdm(t) { document.getElementById('t-equipe').classList.toggle('hidden', t !== 'equipe'); document.getElementById('t-fotos').classList.toggle('hidden', t !== 'fotos'); document.getElementById('b-equipe').style.background = t==='equipe'?'var(--main)':'#888'; document.getElementById('b-fotos').style.background = t==='fotos'?'var(--main)':'#888'; }
-        function setTema(cor) { temaAtual = cor; document.documentElement.style.setProperty('--main', cor); }
-        function togglePass(id) { const p = document.getElementById(id); p.type = p.type === 'password' ? 'text' : 'password'; }
+        function tabAdm(t) { document.getElementById('t-equipe').classList.toggle('hidden', t !== 'equipe'); document.getElementById('t-fotos').classList.toggle('hidden', t !== 'fotos'); }
         function sair() { auth.signOut().then(() => location.reload()); }
 
-        // FUNCIONÁRIO LOGICA
+        // TAREFAS FUNCIONÁRIO
         function ouvirTarefas() {
             db.collection('tasks').where("uid", "==", auth.currentUser.uid).onSnapshot(snap => {
                 const list = document.getElementById('tasks-list-user'); list.innerHTML = "";
@@ -203,9 +186,9 @@
                     const t = doc.data(), id = doc.id, done = t.status === 'concluida', run = t.status === 'rodando';
                     list.innerHTML += `<div class="task-item" style="border-left-color:${done ? 'var(--success)' : (run ? 'var(--danger)' : 'var(--main)')}">
                         <strong>${t.desc}</strong><br>
-                        ${done ? `<span style="color:var(--success); font-weight:bold;">FINALIZADA (${t.duration})</span>` : 
-                        (run ? `<span class="timer-val" id="timer-${id}">00:00:00</span><button onclick="abrirFim('${id}')" style="background:var(--danger)">PARAR E ENVIAR FOTO</button>` : 
-                        `<button onclick="iniciarT('${id}')" style="background:var(--success); margin-top:10px;">COMEÇAR AGORA</button>`)}
+                        ${done ? `<span style="color:var(--success); font-weight:bold;">CONCLUÍDA (${t.duration})</span>` : 
+                        (run ? `<span class="timer-val" id="timer-${id}">00:00:00</span><button onclick="abrirFim('${id}')" style="background:var(--danger)">FINALIZAR AGORA</button>` : 
+                        `<button onclick="iniciarT('${id}')" style="background:var(--success); margin-top:10px;">COMEÇAR TAREFA</button>`)}
                     </div>`;
                     if(run) monitorarTimer(id, t.startTime);
                 });
@@ -225,22 +208,13 @@
         async function confirmarConclusao() {
             const u = await db.collection('users').doc(auth.currentUser.uid).get();
             await db.collection('tasks').doc(currentTask.id).update({ status: 'concluida', duration: currentTask.time, photo: photoBase64, finishedAt: Date.now(), userName: u.data().name });
-            clearInterval(activeTimers[currentTask.id]); closeModals(); alert("Tarefa concluída e enviada!");
+            clearInterval(activeTimers[currentTask.id]); closeModals(); alert("Prova enviada com sucesso!");
         }
 
-        // GERENTE LOGICA
-        async function cadastrarUsuario() {
-            const n = document.getElementById('reg-name').value, e = document.getElementById('reg-email').value, p = document.getElementById('reg-pass').value, r = document.getElementById('reg-role').value;
-            if(!n || !e || !p) return alert("Preencha todos os dados do novo membro!");
-            // No sistema real, você cria o usuário no Firebase Auth. Aqui salvamos no banco para listar.
-            await db.collection('users').add({ name: n, email: e, role: r, tema: '#0056b3' });
-            alert("Membro cadastrado com sucesso!");
-            document.getElementById('reg-name').value = ""; document.getElementById('reg-email').value = ""; document.getElementById('reg-pass').value = "";
-            carregarEquipe();
-        }
+        // PAINEL GERENTE
         async function carregarUsuariosSelect() {
             const sel = document.getElementById('sel-user-task'); const snap = await db.collection('users').where("role","==","user").get();
-            sel.innerHTML = '<option value="">Escolha quem fará...</option>'; snap.forEach(doc => sel.innerHTML += `<option value="${doc.id}">${doc.data().name}</option>`);
+            sel.innerHTML = '<option value="">Selecione o Funcionário...</option>'; snap.forEach(doc => sel.innerHTML += `<option value="${doc.id}">${doc.data().name}</option>`);
         }
         async function enviarTarefa() {
             const uid = document.getElementById('sel-user-task').value, desc = document.getElementById('task-desc').value;
@@ -249,24 +223,19 @@
             document.getElementById('task-desc').value = ""; alert("Tarefa enviada!");
         }
         function carregarAuditoria() {
-            db.collection('tasks').where("status","==","concluida").orderBy("finishedAt","desc").limit(20).onSnapshot(snap => {
-                const list = document.getElementById('audit-list'); list.innerHTML = "<h4>Provas Enviadas</h4>";
-                snap.forEach(doc => { const t = doc.data(); list.innerHTML += `<div class="card"><b>${t.userName}</b>: ${t.desc}<br><small>Tempo: ${t.duration}</small><img src="${t.photo}" class="audit-img"></div>`; });
+            db.collection('tasks').where("status","==","concluida").orderBy("finishedAt","desc").onSnapshot(snap => {
+                const list = document.getElementById('audit-list'); list.innerHTML = "<h4>Provas Recebidas</h4>";
+                snap.forEach(doc => { const t = doc.data(); list.innerHTML += `<div class="card"><b>${t.userName}</b>: ${t.desc}<br><small>Duração: ${t.duration}</small><img src="${t.photo}" class="audit-img"></div>`; });
             });
         }
         async function carregarEquipe() {
-            const list = document.getElementById('team-list'); const snap = await db.collection('users').get(); list.innerHTML = "<h4>Equipe Atual</h4>";
+            const list = document.getElementById('team-list'); const snap = await db.collection('users').get(); list.innerHTML = "<h4>Equipe Cadastrada</h4>";
             snap.forEach(doc => { const u = doc.data(); list.innerHTML += `<div class="card" style="display:flex; justify-content:space-between; align-items:center;"><span><b>${u.name}</b> (${u.role})</span><button onclick="deletarUser('${doc.id}')" style="background:var(--danger); width:auto; padding:8px 12px;"><i class="fas fa-trash"></i></button></div>`; });
         }
-        async function deletarUser(id) { if(confirm("Remover este membro?")) await db.collection('users').doc(id).delete(); carregarEquipe(); }
-
-        // GERAL
-        async function salvarPerfil() {
-            const u = auth.currentUser, foto = document.getElementById('p-foto').value, senha = document.getElementById('p-senha').value;
-            await db.collection('users').doc(u.uid).update({ foto, tema: temaAtual });
-            if(senha.length >= 6) await u.updatePassword(senha);
-            alert("Perfil atualizado!");
-        }
+        async function deletarUser(id) { if(confirm("Deseja remover este membro da equipe?")) await db.collection('users').doc(id).delete(); carregarEquipe(); }
         function carregarMural() { db.collection('config').doc('mural').onSnapshot(doc => { if(doc.exists) { const m = document.getElementById('mural-display'); m.innerHTML = "<b>AVISO:</b><br>" + doc.data().aviso; m.classList.remove('hidden'); } }); }
         async function postarMural() { await db.collection('config').doc('mural').set({ aviso: document.getElementById('msg-mural').value }); alert("Mural atualizado!"); }
-        function closeModals() { document.querySelectorAll('.modal').forEach
+        function closeModals() { document.querySelectorAll('.modal').forEach(m => m.style.display = 'none'); document.getElementById('preview-img').style.display = 'none'; document.getElementById('btn-confirm-task').classList.add('hidden'); }
+    </script>
+</body>
+</html>
