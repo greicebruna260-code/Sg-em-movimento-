@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>SG EM MOVIMENTO - DEFINITIVO</title>
+    <title>SG EM MOVIMENTO - OFICIAL</title>
     
     <link rel="icon" type="image/png" href="icon.png">
     <link rel="apple-touch-icon" href="icon.png">
@@ -20,7 +20,6 @@
         .screen.active { display: flex; animation: fadeIn 0.3s ease; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        /* LOGIN GRADIENTE RÁPIDO */
         .login-wrap { display: flex; align-items: center; justify-content: center; height: 100vh; background: linear-gradient(135deg, var(--main) 0%, var(--dark) 100%); padding: 20px; }
         .login-card { background: #fff; width: 100%; max-width: 360px; padding: 40px 30px; border-radius: 30px; box-shadow: 0 15px 35px rgba(0,0,0,0.3); text-align: center; }
         
@@ -30,24 +29,20 @@
         
         input, textarea, select { width: 100%; padding: 15px; margin-bottom: 12px; border-radius: 12px; border: 1px solid #ddd; font-size: 16px; outline: none; }
         button { width: 100%; padding: 16px; border: none; border-radius: 15px; background: var(--main); color: #fff; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; }
-        button:disabled { opacity: 0.7; cursor: not-allowed; }
+        button:disabled { opacity: 0.7; }
 
-        .btn-choice { background: #fff; color: var(--main); border: 2px solid var(--main); height: 80px; margin-bottom: 15px; }
+        .btn-choice { background: #fff; color: var(--main); border: 2px solid var(--main); height: 70px; margin-bottom: 15px; }
         .btn-admin { background: #1a1a1a; color: white; border: none; }
         
-        /* TAREFAS E AUDITORIA */
         .task-item { border-left: 8px solid var(--main); padding: 15px; margin-bottom: 15px; background: #fff; border-radius: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
         .timer-val { font-family: monospace; font-size: 1.4rem; color: var(--danger); font-weight: bold; display: block; margin: 10px 0; }
         .audit-img { width: 100%; border-radius: 15px; margin-top: 10px; border: 1px solid #ddd; }
-        .profile-img { width: 100px; height: 100px; border-radius: 50%; border: 4px solid #fff; object-fit: cover; background: #ddd; margin: -50px auto 15px; display: block; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .profile-img { width: 90px; height: 90px; border-radius: 50%; border: 4px solid #fff; object-fit: cover; background: #ddd; margin: -45px auto 15px; display: block; }
         
-        /* CORES PERSONALIZAÇÃO */
-        .color-opt { width: 40px; height: 40px; border-radius: 50%; cursor: pointer; border: 3px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
-
+        .color-opt { width: 35px; height: 35px; border-radius: 50%; cursor: pointer; border: 2px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
         .modal { position: fixed; inset: 0; background: rgba(0,0,0,0.8); display: none; align-items: center; justify-content: center; z-index: 3000; padding: 15px; }
         .modal-content { background: #fff; width: 100%; max-width: 450px; border-radius: 30px; padding: 25px; max-height: 85vh; overflow-y: auto; }
 
-        /* SPINNER DE LOGIN */
         .spinner { display: none; width: 20px; height: 20px; border: 3px solid rgba(255,255,255,0.3); border-top: 3px solid #fff; border-radius: 50%; animation: spin 0.8s linear infinite; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     </style>
@@ -90,20 +85,17 @@
                 <button onclick="tab('escala')" id="b-escala" style="flex:1;">ROTINA</button>
                 <button onclick="tab('perfil')" id="b-perfil" style="flex:1; background:#888;">PERFIL</button>
             </div>
-            
             <div id="t-escala">
                 <div id="mural-display" class="card hidden" style="background:#fff9c4; border-left:5px solid #fbc02d; padding:15px; font-size:0.85rem"></div>
                 <div class="card" style="text-align:center;"><button onclick="baterPonto()" style="background:var(--success);"><i class="fas fa-clock"></i> REGISTRAR PONTO</button></div>
                 <div id="tasks-list-user"></div>
             </div>
-
             <div id="t-perfil" class="hidden">
                 <div class="card">
                     <h3>Personalizar App</h3>
                     <input type="text" id="p-foto" placeholder="Link da sua Foto">
                     <input type="password" id="p-senha" placeholder="Trocar Senha">
-                    <label style="font-size: 0.9rem; margin-bottom: 5px; display: block;">Cor do Tema:</label>
-                    <div style="display:grid; grid-template-columns: repeat(5, 1fr); gap:10px; justify-items:center; margin:15px 0;">
+                    <div style="display:grid; grid-template-columns: repeat(5, 1fr); gap:10px; margin:15px 0;">
                         <div class="color-opt" style="background:#0056b3" onclick="setTema('#0056b3')"></div>
                         <div class="color-opt" style="background:#2ecc71" onclick="setTema('#2ecc71')"></div>
                         <div class="color-opt" style="background:#e91e63" onclick="setTema('#e91e63')"></div>
@@ -115,7 +107,7 @@
                         <div class="color-opt" style="background:#1abc9c" onclick="setTema('#1abc9c')"></div>
                         <div class="color-opt" style="background:#7f8c8d" onclick="setTema('#7f8c8d')"></div>
                     </div>
-                    <button onclick="salvarPerfil()">SALVAR ALTERAÇÕES</button>
+                    <button onclick="salvarPerfil()">SALVAR</button>
                 </div>
             </div>
             <button onclick="showScreen('screen-choice')" style="background:#dee2e6; color:#333; margin-top:15px">Voltar</button>
@@ -129,11 +121,10 @@
                 <button onclick="tabAdm('gestao')" id="b-gestao" style="flex:1.2; font-size:0.8rem">EQUIPE / MURAL</button>
                 <button onclick="tabAdm('fotos')" id="b-fotos" style="flex:1; background:#888; font-size:0.8rem">AUDITORIA FOTOS</button>
             </div>
-
             <div id="t-gestao">
                 <div class="card">
-                    <h4>Mural de Avisos</h4>
-                    <textarea id="msg-mural" placeholder="Aviso geral..."></textarea>
+                    <h4>Mural</h4>
+                    <textarea id="msg-mural" placeholder="Escreva o aviso geral..."></textarea>
                     <button onclick="postarMural()" style="background:#f39c12">POSTAR</button>
                 </div>
                 <div class="card">
@@ -152,7 +143,6 @@
                 </div>
                 <div id="team-list"></div>
             </div>
-
             <div id="t-fotos" class="hidden"><div id="audit-list"></div></div>
             <button onclick="showScreen('screen-choice')" style="background:#dee2e6; color:#333; margin-top:15px">Voltar</button>
         </div>
@@ -161,13 +151,11 @@
     <div id="modal-finish" class="modal">
         <div class="modal-content">
             <h3>Finalizar Tarefa</h3>
-            <p id="f-timer-val" style="font-weight:bold; color:var(--danger); font-size:1.2rem;"></p>
-            <div style="text-align:center; margin-bottom:15px;">
-                <img id="preview-img" style="width:100%; border-radius:15px; display:none; border: 2px solid var(--success);">
-            </div>
+            <p id="f-timer-val" style="font-weight:bold; color:var(--danger);"></p>
+            <img id="preview-img" style="width:100%; border-radius:15px; display:none; margin-bottom:15px; border:2px solid var(--success);">
             <input type="file" id="file-input" accept="image/*" capture="camera" hidden onchange="processPhoto(this)">
             <button onclick="document.getElementById('file-input').click()" style="background:var(--dark); margin-bottom:10px;"><i class="fas fa-camera"></i> TIRAR FOTO DA PROVA</button>
-            <button id="btn-confirm-task" class="hidden" onclick="confirmarConclusao()" style="background:var(--success);">CONFIRMAR E ENVIAR</button>
+            <button id="btn-confirm-task" class="hidden" onclick="confirmarConclusao()" style="background:var(--success);">ENVIAR PROVA</button>
             <button onclick="closeModals()" style="background:#dee2e6; color:#333; margin-top:10px">CANCELAR</button>
         </div>
     </div>
@@ -181,12 +169,10 @@
         firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth(), db = firebase.firestore();
         
-        // Ativa persistência para login instantâneo
-        db.enablePersistence().catch(err => console.log("Offline mode disabled"));
+        db.enablePersistence().catch(() => {});
 
         let activeTimers = {}, currentTask = null, photoBase64 = "", temaAtual = "#0056b3";
 
-        // MONITOR DE LOGIN (ACELERADO)
         auth.onAuthStateChanged(user => {
             if (user) {
                 db.collection('users').doc(user.uid).onSnapshot({ includeMetadataChanges: true }, doc => {
@@ -204,17 +190,11 @@
         async function handleLogin() {
             const e = document.getElementById('email').value.trim(), p = document.getElementById('password').value;
             if(!e || !p) return alert("Preencha tudo!");
-            
             const btn = document.getElementById('login-btn'), txt = document.getElementById('login-text'), spin = document.getElementById('login-spinner');
             btn.disabled = true; txt.style.display = 'none'; spin.style.display = 'block';
-
-            try { await auth.signInWithEmailAndPassword(e, p); } catch(err) { 
-                alert("Erro de acesso."); 
-                btn.disabled = false; txt.style.display = 'block'; spin.style.display = 'none';
-            }
+            try { await auth.signInWithEmailAndPassword(e, p); } catch(err) { alert("Erro de acesso."); btn.disabled = false; txt.style.display = 'block'; spin.style.display = 'none'; }
         }
 
-        // NAVEGAÇÃO E TABS
         function showScreen(id) { document.querySelectorAll('.screen').forEach(s => s.classList.remove('active')); document.getElementById(id).classList.add('active'); }
         function nav(m) { if(m==='admin'){showScreen('screen-admin'); carregarEquipe(); carregarAuditoria(); carregarUsuariosSelect();} else {showScreen('screen-user'); ouvirTarefas(); carregarMural();} }
         function tab(t) { document.getElementById('t-escala').classList.toggle('hidden', t !== 'escala'); document.getElementById('t-perfil').classList.toggle('hidden', t !== 'perfil'); document.getElementById('b-escala').style.background = t === 'escala' ? 'var(--main)' : '#888'; document.getElementById('b-perfil').style.background = t === 'perfil' ? 'var(--main)' : '#888'; }
@@ -223,7 +203,6 @@
         function togglePass(id) { const p = document.getElementById(id); p.type = p.type === 'password' ? 'text' : 'password'; }
         function sair() { auth.signOut().then(() => location.reload()); }
 
-        // FUNCIONÁRIO
         function ouvirTarefas() {
             db.collection('tasks').where("uid", "==", auth.currentUser.uid).onSnapshot(snap => {
                 const list = document.getElementById('tasks-list-user'); list.innerHTML = "";
@@ -255,8 +234,8 @@
                 const reader = new FileReader();
                 reader.onload = e => {
                     photoBase64 = e.target.result;
-                    const img = document.getElementById('preview-img');
-                    img.src = photoBase64; img.style.display = 'block';
+                    document.getElementById('preview-img').src = photoBase64; 
+                    document.getElementById('preview-img').style.display = 'block';
                     document.getElementById('btn-confirm-task').classList.remove('hidden');
                 };
                 reader.readAsDataURL(input.files[0]);
@@ -268,7 +247,18 @@
             clearInterval(activeTimers[currentTask.id]); closeModals(); alert("Tarefa concluída!");
         }
 
-        // GERENTE
+        // AUDITORIA CORRIGIDA SEM TRAVA DE ÍNDICE
+        function carregarAuditoria() {
+            db.collection('tasks').where("status","==","concluida").onSnapshot(snap => {
+                const list = document.getElementById('audit-list'); 
+                list.innerHTML = "<h4>Últimas Provas Recebidas</h4>";
+                snap.forEach(doc => { 
+                    const t = doc.data(); 
+                    list.innerHTML += `<div class="card"><b>${t.userName || 'Membro'}</b>: ${t.desc}<br><small>Tempo: ${t.duration}</small><img src="${t.photo}" class="audit-img"></div>`; 
+                });
+            });
+        }
+
         async function carregarUsuariosSelect() {
             const sel = document.getElementById('sel-user-task'); const snap = await db.collection('users').where("role","==","user").get();
             sel.innerHTML = '<option value="">Selecionar Funcionário</option>'; snap.forEach(doc => sel.innerHTML += `<option value="${doc.id}">${doc.data().name}</option>`);
@@ -279,14 +269,13 @@
             await db.collection('tasks').add({ uid, desc, status: 'pendente', createdAt: Date.now() });
             document.getElementById('task-desc').value = ""; alert("Tarefa enviada!");
         }
-        function carregarAuditoria() {
-            db.collection('tasks').where("status","==","concluida").orderBy("finishedAt","desc").onSnapshot(snap => {
-                const list = document.getElementById('audit-list'); list.innerHTML = "<h4>Provas Recebidas</h4>";
-                snap.forEach(doc => { const t = doc.data(); list.innerHTML += `<div class="card"><b>${t.userName}</b>: fez: ${t.desc}<br><small>Tempo: ${t.duration}</small><img src="${t.photo}" class="audit-img"></div>`; });
-            });
-        }
         async function carregarEquipe() {
-            const list = document.getElementById('team-list'); const snap = await db.collection('            </div>
+            const list = document.getElementById('team-list'); const snap = await db.collection('users').get(); list.innerHTML = "<h4>Equipe</h4>";
+            snap.forEach(doc => { const u = doc.data(); list.innerHTML += `<div class="card" style="display:flex; justify-content:space-between; align-items:center;"><span><b>${u.name}</b> (${u.role})</span><button onclick="deletarUser('${doc.id}')" style="background:var(--danger); width:auto; padding:8px 12px;">Excluir</button></div>`; });
+        }
+        async function deletarUser(id) { if(confirm("Excluir?")) await db.collection('users').doc(id).delete(); carregarEquipe(); }
+        async function salvarPerfil() {
+                  </div>
             <div id="t-gestao">
                 <div class="card">
                     <h4>Mural de Avisos</h4>
