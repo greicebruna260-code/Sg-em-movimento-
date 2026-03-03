@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>SG EM MOVIMENTO - OFICIAL</title>
+    <title>SG EM MOVIMENTO - SUPREMO</title>
     
     <link rel="icon" type="image/png" href="icon.png">
     <link rel="apple-touch-icon" href="icon.png">
@@ -54,10 +54,7 @@
             <div class="login-card">
                 <h1 style="color:var(--main); font-size:1.5rem; margin-bottom:30px;">SG EM MOVIMENTO</h1>
                 <input type="email" id="email" placeholder="E-mail">
-                <div style="position:relative;">
-                    <input type="password" id="password" placeholder="Senha">
-                    <i class="fas fa-eye" style="position:absolute; right:15px; top:15px; color:#888;" onclick="togglePass('password')"></i>
-                </div>
+                <input type="password" id="password" placeholder="Senha">
                 <button onclick="handleLogin()" id="login-btn">
                     <span id="login-text">ACESSAR</span>
                     <div class="spinner" id="login-spinner"></div>
@@ -86,7 +83,7 @@
                 <button onclick="tab('perfil')" id="b-perfil" style="flex:1; background:#888;">PERFIL</button>
             </div>
             <div id="t-escala">
-                <div id="mural-display" class="card hidden" style="background:#fff9c4; border-left:5px solid #fbc02d; padding:15px; font-size:0.85rem"></div>
+                <div id="mural-display" class="card hidden" style="background:#fff9c4; border-left:5px solid #fbc02d; padding:15px;"></div>
                 <div class="card" style="text-align:center;"><button onclick="baterPonto()" style="background:var(--success);"><i class="fas fa-clock"></i> REGISTRAR PONTO</button></div>
                 <div id="tasks-list-user"></div>
             </div>
@@ -101,11 +98,6 @@
                         <div class="color-opt" style="background:#e91e63" onclick="setTema('#e91e63')"></div>
                         <div class="color-opt" style="background:#8e44ad" onclick="setTema('#8e44ad')"></div>
                         <div class="color-opt" style="background:#1a1a1a" onclick="setTema('#1a1a1a')"></div>
-                        <div class="color-opt" style="background:#f39c12" onclick="setTema('#f39c12')"></div>
-                        <div class="color-opt" style="background:#e74c3c" onclick="setTema('#e74c3c')"></div>
-                        <div class="color-opt" style="background:#f1c40f" onclick="setTema('#f1c40f')"></div>
-                        <div class="color-opt" style="background:#1abc9c" onclick="setTema('#1abc9c')"></div>
-                        <div class="color-opt" style="background:#7f8c8d" onclick="setTema('#7f8c8d')"></div>
                     </div>
                     <button onclick="salvarPerfil()">SALVAR</button>
                 </div>
@@ -118,28 +110,20 @@
         <div class="header"><h1>GERÊNCIA</h1></div>
         <div class="container">
             <div style="display:flex; gap:10px; margin-bottom:20px;">
-                <button onclick="tabAdm('gestao')" id="b-gestao" style="flex:1.2; font-size:0.8rem">EQUIPE / MURAL</button>
-                <button onclick="tabAdm('fotos')" id="b-fotos" style="flex:1; background:#888; font-size:0.8rem">AUDITORIA FOTOS</button>
+                <button onclick="tabAdm('gestao')" id="b-gestao" style="flex:1;">EQUIPE</button>
+                <button onclick="tabAdm('fotos')" id="b-fotos" style="flex:1; background:#888;">AUDITORIA</button>
             </div>
             <div id="t-gestao">
                 <div class="card">
                     <h4>Mural</h4>
-                    <textarea id="msg-mural" placeholder="Escreva o aviso geral..."></textarea>
+                    <textarea id="msg-mural" placeholder="Aviso geral..."></textarea>
                     <button onclick="postarMural()" style="background:#f39c12">POSTAR</button>
-                </div>
-                <div class="card">
-                    <h4>Novo Cadastro</h4>
-                    <input type="text" id="reg-name" placeholder="Nome">
-                    <input type="email" id="reg-email" placeholder="E-mail">
-                    <input type="password" id="reg-pass" placeholder="Senha">
-                    <select id="reg-role"><option value="user">Funcionário</option><option value="admin">Gerente</option></select>
-                    <button onclick="cadastrarUsuario()">CADASTRAR</button>
                 </div>
                 <div class="card">
                     <h4>Passar Tarefa</h4>
                     <select id="sel-user-task"></select>
                     <textarea id="task-desc" placeholder="O que deve ser feito?"></textarea>
-                    <button onclick="enviarTarefa()">ENVIAR TAREFA</button>
+                    <button onclick="enviarTarefa()">ENVIAR</button>
                 </div>
                 <div id="team-list"></div>
             </div>
@@ -152,10 +136,10 @@
         <div class="modal-content">
             <h3>Finalizar Tarefa</h3>
             <p id="f-timer-val" style="font-weight:bold; color:var(--danger);"></p>
-            <img id="preview-img" style="width:100%; border-radius:15px; display:none; margin-bottom:15px; border:2px solid var(--success);">
+            <img id="preview-img" style="width:100%; border-radius:15px; display:none; margin-bottom:15px;">
             <input type="file" id="file-input" accept="image/*" capture="camera" hidden onchange="processPhoto(this)">
-            <button onclick="document.getElementById('file-input').click()" style="background:var(--dark); margin-bottom:10px;"><i class="fas fa-camera"></i> TIRAR FOTO DA PROVA</button>
-            <button id="btn-confirm-task" class="hidden" onclick="confirmarConclusao()" style="background:var(--success);">ENVIAR PROVA</button>
+            <button onclick="document.getElementById('file-input').click()" style="background:var(--dark);"><i class="fas fa-camera"></i> TIRAR FOTO</button>
+            <button id="btn-confirm-task" class="hidden" onclick="confirmarConclusao()" style="background:var(--success); margin-top:10px;">ENVIAR PROVA</button>
             <button onclick="closeModals()" style="background:#dee2e6; color:#333; margin-top:10px">CANCELAR</button>
         </div>
     </div>
@@ -170,12 +154,11 @@
         const auth = firebase.auth(), db = firebase.firestore();
         
         db.enablePersistence().catch(() => {});
-
         let activeTimers = {}, currentTask = null, photoBase64 = "", temaAtual = "#0056b3";
 
         auth.onAuthStateChanged(user => {
             if (user) {
-                db.collection('users').doc(user.uid).onSnapshot({ includeMetadataChanges: true }, doc => {
+                db.collection('users').doc(user.uid).onSnapshot(doc => {
                     if (doc.exists) {
                         const d = doc.data();
                         if(d.role === 'admin') document.getElementById('admin-area').classList.remove('hidden');
@@ -192,7 +175,7 @@
             if(!e || !p) return alert("Preencha tudo!");
             const btn = document.getElementById('login-btn'), txt = document.getElementById('login-text'), spin = document.getElementById('login-spinner');
             btn.disabled = true; txt.style.display = 'none'; spin.style.display = 'block';
-            try { await auth.signInWithEmailAndPassword(e, p); } catch(err) { alert("Erro de acesso."); btn.disabled = false; txt.style.display = 'block'; spin.style.display = 'none'; }
+            try { await auth.signInWithEmailAndPassword(e, p); } catch(err) { alert("Acesso negado."); btn.disabled = false; txt.style.display = 'block'; spin.style.display = 'none'; }
         }
 
         function showScreen(id) { document.querySelectorAll('.screen').forEach(s => s.classList.remove('active')); document.getElementById(id).classList.add('active'); }
@@ -203,21 +186,30 @@
         function togglePass(id) { const p = document.getElementById(id); p.type = p.type === 'password' ? 'text' : 'password'; }
         function sair() { auth.signOut().then(() => location.reload()); }
 
+        // LÓGICA DO FUNCIONÁRIO (COM AUTO-REMOÇÃO APÓS 1 MINUTO)
         function ouvirTarefas() {
             db.collection('tasks').where("uid", "==", auth.currentUser.uid).onSnapshot(snap => {
                 const list = document.getElementById('tasks-list-user'); list.innerHTML = "";
+                const agora = Date.now();
                 snap.forEach(doc => {
-                    const t = doc.data(), id = doc.id, done = t.status === 'concluida', run = t.status === 'rodando';
-                    list.innerHTML += `<div class="task-item" style="border-left-color:${done ? 'var(--success)' : (run ? 'var(--danger)' : 'var(--main)')}">
+                    const t = doc.data(), id = doc.id;
+                    const concluida = t.status === 'concluida';
+                    
+                    // Se concluída há mais de 60 segundos, não mostra no painel
+                    if (concluida && t.finishedAt && (agora - t.finishedAt > 60000)) return;
+
+                    const rodando = t.status === 'rodando';
+                    list.innerHTML += `<div class="task-item" style="border-left-color:${concluida ? 'var(--success)' : (rodando ? 'var(--danger)' : 'var(--main)')}">
                         <strong>${t.desc}</strong><br>
-                        ${done ? `<span style="color:var(--success); font-weight:bold;">CONCLUÍDA (${t.duration})</span>` : 
-                        (run ? `<span class="timer-val" id="timer-${id}">00:00:00</span><button onclick="abrirFim('${id}')" style="background:var(--danger)">FINALIZAR AGORA</button>` : 
-                        `<button onclick="iniciarT('${id}')" style="background:var(--success); margin-top:10px;">INICIAR TAREFA</button>`)}
+                        ${concluida ? `<span style="color:var(--success); font-weight:bold;">ENVIADO! (Saindo em breve...)</span>` : 
+                        (rodando ? `<span class="timer-val" id="timer-${id}">00:00:00</span><button onclick="abrirFim('${id}')" style="background:var(--danger)">FINALIZAR AGORA</button>` : 
+                        `<button onclick="iniciarT('${id}')" style="background:var(--success); margin-top:10px;">COMEÇAR</button>`)}
                     </div>`;
-                    if(run) monitorarTimer(id, t.startTime);
+                    if(rodando) monitorarTimer(id, t.startTime);
                 });
             });
         }
+
         function monitorarTimer(id, start) {
             if(activeTimers[id]) clearInterval(activeTimers[id]);
             activeTimers[id] = setInterval(() => {
@@ -227,363 +219,51 @@
             }, 1000);
         }
         async function iniciarT(id) { await db.collection('tasks').doc(id).update({ status: 'rodando', startTime: Date.now() }); }
-        function abrirFim(id) { currentTask = { id, time: document.getElementById(`timer-${id}`).innerText }; document.getElementById('f-timer-val').innerText = "Tempo Gasto: " + currentTask.time; document.getElementById('modal-finish').style.display='flex'; }
-        
-        function processPhoto(input) {
-            if (input.files && input.files[0]) {
-                const reader = new FileReader();
-                reader.onload = e => {
-                    photoBase64 = e.target.result;
-                    document.getElementById('preview-img').src = photoBase64; 
-                    document.getElementById('preview-img').style.display = 'block';
-                    document.getElementById('btn-confirm-task').classList.remove('hidden');
-                };
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-        async function confirmarConclusao() {
-            const u = await db.collection('users').doc(auth.currentUser.uid).get();
-            await db.collection('tasks').doc(currentTask.id).update({ status: 'concluida', duration: currentTask.time, photo: photoBase64, finishedAt: Date.now(), userName: u.data().name });
-            clearInterval(activeTimers[currentTask.id]); closeModals(); alert("Tarefa concluída!");
-        }
-
-        // AUDITORIA CORRIGIDA SEM TRAVA DE ÍNDICE
-        function carregarAuditoria() {
-            db.collection('tasks').where("status","==","concluida").onSnapshot(snap => {
-                const list = document.getElementById('audit-list'); 
-                list.innerHTML = "<h4>Últimas Provas Recebidas</h4>";
-                snap.forEach(doc => { 
-                    const t = doc.data(); 
-                    list.innerHTML += `<div class="card"><b>${t.userName || 'Membro'}</b>: ${t.desc}<br><small>Tempo: ${t.duration}</small><img src="${t.photo}" class="audit-img"></div>`; 
-                });
-            });
-        }
-
-        async function carregarUsuariosSelect() {
-            const sel = document.getElementById('sel-user-task'); const snap = await db.collection('users').where("role","==","user").get();
-            sel.innerHTML = '<option value="">Selecionar Funcionário</option>'; snap.forEach(doc => sel.innerHTML += `<option value="${doc.id}">${doc.data().name}</option>`);
-        }
-        async function enviarTarefa() {
-            const uid = document.getElementById('sel-user-task').value, desc = document.getElementById('task-desc').value;
-            if(!uid || !desc) return alert("Preencha tudo!");
-            await db.collection('tasks').add({ uid, desc, status: 'pendente', createdAt: Date.now() });
-            document.getElementById('task-desc').value = ""; alert("Tarefa enviada!");
-        }
-        async function carregarEquipe() {
-            const list = document.getElementById('team-list'); const snap = await db.collection('users').get(); list.innerHTML = "<h4>Equipe</h4>";
-            snap.forEach(doc => { const u = doc.data(); list.innerHTML += `<div class="card" style="display:flex; justify-content:space-between; align-items:center;"><span><b>${u.name}</b> (${u.role})</span><button onclick="deletarUser('${doc.id}')" style="background:var(--danger); width:auto; padding:8px 12px;">Excluir</button></div>`; });
-        }
-        async function deletarUser(id) { if(confirm("Excluir?")) await db.collection('users').doc(id).delete(); carregarEquipe(); }
-        async function salvarPerfil() {
-                  </div>
-            <div id="t-gestao">
-                <div class="card">
-                    <h4>Mural de Avisos</h4>
-                    <textarea id="msg-mural" placeholder="Escreva o aviso geral..."></textarea>
-                    <button onclick="postarMural()" style="background:#f39c12">POSTAR</button>
-                </div>
-                <div class="card">
-                    <h4>Novo Cadastro</h4>
-                    <input type="text" id="reg-name" placeholder="Nome">
-                    <input type="email" id="reg-email" placeholder="E-mail">
-                    <input type="password" id="reg-pass" placeholder="Senha">
-                    <select id="reg-role"><option value="user">Funcionário</option><option value="admin">Gerente</option></select>
-                    <button onclick="cadastrarUsuario()">CADASTRAR</button>
-                </div>
-                <div class="card">
-                    <h4>Enviar Tarefa</h4>
-                    <select id="sel-user-task"></select>
-                    <textarea id="task-desc" placeholder="Descreva a tarefa..."></textarea>
-                    <button onclick="enviarTarefa()">ENVIAR TAREFA</button>
-                </div>
-                <div id="team-list"></div>
-            </div>
-            <div id="t-fotos" class="hidden"><div id="audit-list"></div></div>
-            <button onclick="showScreen('screen-choice')" class="btn-sec">Voltar</button>
-        </div>
-    </div>
-
-    <div id="modal-finish" class="modal">
-        <div class="modal-content">
-            <h3>Finalizar Tarefa</h3>
-            <p id="f-timer-val" style="font-weight:bold; color:var(--danger);"></p>
-            <img id="preview-img" style="width:100%; border-radius:15px; display:none; margin-bottom:15px;">
-            <input type="file" id="file-input" accept="image/*" capture="camera" hidden onchange="processPhoto(this)">
-            <button onclick="document.getElementById('file-input').click()" style="background:var(--dark); margin-bottom:10px;">TIRAR FOTO</button>
-            <button id="btn-confirm-task" class="hidden" onclick="confirmarConclusao()" style="background:var(--success);">ENVIAR PROVA</button>
-            <button onclick="closeModals()" class="btn-sec">CANCELAR</button>
-        </div>
-    </div>
-
-    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
-
-    <script>
-        const firebaseConfig = { apiKey: "AIzaSyCKq_Vv_Ju8AXxQtJrf5jmvxzN4fmVWoxA", authDomain: "sg-em-movimento.firebaseapp.com", projectId: "sg-em-movimento", storageBucket: "sg-em-movimento.firebasestorage.app", messagingSenderId: "494975014065", appId: "1:494975014065:web:948d73882c260478dcbe90" };
-        firebase.initializeApp(firebaseConfig);
-        const auth = firebase.auth(), db = firebase.firestore();
-        let activeTimers = {}, currentTask = null, photoBase64 = "", temaAtual = "#0056b3";
-
-        auth.onAuthStateChanged(user => {
-            if (user) {
-                db.collection('users').doc(user.uid).onSnapshot(doc => {
-                    if (doc.exists) {
-                        const d = doc.data();
-                        if(d.role === 'admin') document.getElementById('admin-area').classList.remove('hidden');
-                        if(d.tema) setTema(d.tema);
-                        document.getElementById('user-photo').src = d.foto || "https://cdn-icons-png.flaticon.com/512/149/149071.png";
-                        showScreen('screen-choice');
-                    }
-                });
-            } else { showScreen('screen-login'); }
-        });
-
-        async function handleLogin() {
-            const e = document.getElementById('email').value.trim(), p = document.getElementById('password').value;
-            try { await auth.signInWithEmailAndPassword(e, p); } catch(err) { alert("Erro de acesso."); }
-        }
-
-        function setTema(cor) { temaAtual = cor; document.documentElement.style.setProperty('--main', cor); }
-        function showScreen(id) { document.querySelectorAll('.screen').forEach(s => s.classList.remove('active')); document.getElementById(id).classList.add('active'); }
-        function nav(m) { if(m==='admin'){showScreen('screen-admin'); carregarEquipe(); carregarAuditoria(); carregarUsuariosSelect();} else {showScreen('screen-user'); ouvirTarefas(); carregarMural();} }
-        function tab(t) { document.getElementById('t-escala').classList.toggle('hidden', t !== 'escala'); document.getElementById('t-perfil').classList.toggle('hidden', t !== 'perfil'); document.getElementById('b-escala').style.background = t === 'escala' ? 'var(--main)' : '#888'; document.getElementById('b-perfil').style.background = t === 'perfil' ? 'var(--main)' : '#888'; }
-        function tabAdm(t) { document.getElementById('t-gestao').classList.toggle('hidden', t !== 'gestao'); document.getElementById('t-fotos').classList.toggle('hidden', t !== 'fotos'); document.getElementById('b-gestao').style.background = t === 'gestao' ? 'var(--main)' : '#888'; document.getElementById('b-fotos').style.background = t === 'fotos' ? 'var(--main)' : '#888'; }
-        function togglePass(id) { const p = document.getElementById(id); p.type = p.type === 'password' ? 'text' : 'password'; }
-        function sair() { auth.signOut().then(() => location.reload()); }
-
-        function ouvirTarefas() {
-            db.collection('tasks').where("uid", "==", auth.currentUser.uid).onSnapshot(snap => {
-                const list = document.getElementById('tasks-list-user'); list.innerHTML = "";
-                snap.forEach(doc => {
-                    const t = doc.data(), id = doc.id, done = t.status === 'concluida', run = t.status === 'rodando';
-                    list.innerHTML += `<div class="task-item" style="border-left-color:${done ? 'var(--success)' : (run ? 'var(--danger)' : 'var(--main)')}">
-                        <strong>${t.desc}</strong><br>
-                        ${done ? `<span style="color:var(--success); font-weight:bold;">CONCLUÍDA (${t.duration})</span>` : 
-                        (run ? `<span class="timer-val" id="timer-${id}">00:00:00</span><button onclick="abrirFim('${id}')" style="background:var(--danger)">FINALIZAR AGORA</button>` : 
-                        `<button onclick="iniciarT('${id}')" style="background:var(--success); margin-top:10px;">INICIAR TAREFA</button>`)}
-                    </div>`;
-                    if(run) monitorarTimer(id, t.startTime);
-                });
-            });
-        }
-        function monitorarTimer(id, start) {
-            if(activeTimers[id]) clearInterval(activeTimers[id]);
-            activeTimers[id] = setInterval(() => {
-                const diff = Date.now() - start;
-                const h = Math.floor(diff/3600000).toString().padStart(2,'0'), m = Math.floor((diff%3600000)/60000).toString().padStart(2,'0'), s = Math.floor((diff%60000)/1000).toString().padStart(2,'0');
-                const el = document.getElementById(`timer-${id}`); if(el) el.innerText = `${h}:${m}:${s}`;
-            }, 1000);
-        }
-        async function iniciarT(id) { await db.collection('tasks').doc(id).update({ status: 'rodando', startTime: Date.now() }); }
-        function abrirFim(id) { currentTask = { id, time: document.getElementById(`timer-${id}`).innerText }; document.getElementById('f-timer-val').innerText = "Tempo Gasto: " + currentTask.time; document.getElementById('modal-finish').style.display='flex'; }
+        function abrirFim(id) { currentTask = { id, time: document.getElementById(`timer-${id}`).innerText }; document.getElementById('f-timer-val').innerText = "Tempo: " + currentTask.time; document.getElementById('modal-finish').style.display='flex'; }
         function processPhoto(input) { if (input.files && input.files[0]) { const reader = new FileReader(); reader.onload = e => { photoBase64 = e.target.result; document.getElementById('preview-img').src = photoBase64; document.getElementById('preview-img').style.display = 'block'; document.getElementById('btn-confirm-task').classList.remove('hidden'); }; reader.readAsDataURL(input.files[0]); } }
         async function confirmarConclusao() {
             const u = await db.collection('users').doc(auth.currentUser.uid).get();
             await db.collection('tasks').doc(currentTask.id).update({ status: 'concluida', duration: currentTask.time, photo: photoBase64, finishedAt: Date.now(), userName: u.data().name });
-            clearInterval(activeTimers[currentTask.id]); closeModals(); alert("Tarefa concluída!");
+            clearInterval(activeTimers[currentTask.id]); closeModals(); alert("Enviado com sucesso!");
         }
+
+        // GERENTE (COM LIXEIRA)
+        function carregarAuditoria() {
+            db.collection('tasks').where("status","==","concluida").onSnapshot(snap => {
+                const list = document.getElementById('audit-list'); list.innerHTML = "<h4>Histórico / Lixeira</h4>";
+                snap.forEach(doc => { 
+                    const t = doc.data(), id = doc.id;
+                    list.innerHTML += `<div class="card">
+                        <div style="display:flex; justify-content:space-between;"><b>${t.userName}</b> <i class="fas fa-trash" style="color:var(--danger); cursor:pointer;" onclick="deletarTarefa('${id}')"></i></div>
+                        <span>Tarefa: ${t.desc}</span><br><small>Tempo: ${t.duration}</small>
+                        <img src="${t.photo}" class="audit-img">
+                    </div>`; 
+                });
+            });
+        }
+        async function deletarTarefa(id) { if(confirm("Apagar permanentemente esta prova?")) await db.collection('tasks').doc(id).delete(); }
 
         async function carregarUsuariosSelect() {
             const sel = document.getElementById('sel-user-task'); const snap = await db.collection('users').where("role","==","user").get();
-            sel.innerHTML = '<option value="">Selecionar Funcionário</option>'; snap.forEach(doc => sel.innerHTML += `<option value="${doc.id}">${doc.data().name}</option>`);
+            sel.innerHTML = '<option value="">Quem vai fazer?</option>'; snap.forEach(doc => sel.innerHTML += `<option value="${doc.id}">${doc.data().name}</option>`);
         }
         async function enviarTarefa() {
             const uid = document.getElementById('sel-user-task').value, desc = document.getElementById('task-desc').value;
-            if(!uid || !desc) return alert("Preencha tudo!");
+            if(!uid || !desc) return alert("Falta dados!");
             await db.collection('tasks').add({ uid, desc, status: 'pendente', createdAt: Date.now() });
             document.getElementById('task-desc').value = ""; alert("Tarefa enviada!");
         }
-        function carregarAuditoria() {
-            db.collection('tasks').where("status","==","concluida").orderBy("finishedAt","desc").onSnapshot(snap => {
-                const list = document.getElementById('audit-list'); list.innerHTML = "<h4>Últimas Provas</h4>";
-                snap.forEach(doc => { const t = doc.data(); list.innerHTML += `<div class="card"><b>${t.userName}</b>: ${t.desc}<br><small>Duração: ${t.duration}</small><img src="${t.photo}" class="audit-img"></div>`; });
-            });
-        }
         async function carregarEquipe() {
             const list = document.getElementById('team-list'); const snap = await db.collection('users').get(); list.innerHTML = "<h4>Equipe</h4>";
-            snap.forEach(doc => { const u = doc.data(); list.innerHTML += `<div class="card" style="display:flex; justify-content:space-between; align-items:center;"><span><b>${u.name}</b> (${u.role})</span><button onclick="deletarUser('${doc.id}')" style="background:var(--danger); width:auto; padding:8px 12px;">Excluir</button></div>`; });
+            snap.forEach(doc => { const u = doc.data(); list.innerHTML += `<div class="card" style="display:flex; justify-content:space-between; align-items:center; padding:10px;"><span><b>${u.name}</b></span><button onclick="deletarUser('${doc.id}')" style="background:var(--danger); width:auto; padding:8px 12px;"><i class="fas fa-user-minus"></i></button></div>`; });
         }
-        async function deletarUser(id) { if(confirm("Excluir?")) await db.collection('users').doc(id).delete(); carregarEquipe(); }
-
+        async function deletarUser(id) { if(confirm("Excluir usuário?")) await db.collection('users').doc(id).delete(); carregarEquipe(); }
         async function salvarPerfil() {
             const u = auth.currentUser, foto = document.getElementById('p-foto').value, senha = document.getElementById('p-senha').value;
             await db.collection('users').doc(u.uid).update({ foto, tema: temaAtual });
             if(senha.length >= 6) await u.updatePassword(senha);
-            alert("Salvo!");
+            alert("Atualizado!");
         }
-        async function baterPonto() { await db.collection('users').doc(auth.currentUser.uid).update({ ponto: new Date().toLocaleString() }); alert("Ponto OK!"); }
+        async function baterPonto() { await db.collection('users').doc(auth.currentUser.uid).update({ ponto: new Date().toLocaleString() }); alert("Ponto Registrado!"); }
         function carregarMural() { db.collection('config').doc('mural').onSnapshot(doc => { if(doc.exists) { const m = document.getElementById('mural-display'); m.innerHTML = "<b>AVISO:</b><br>" + doc.data().aviso; m.classList.remove('hidden'); } }); }
-        async function postarMural() { await db.collection('config').doc('mural').set({ aviso: document.getElementById('msg-mural').value }); alert("Postado!"); }
-        async function cadastrarUsuario() { const n = document.getElementById('reg-name').value, e = document.getElementById('reg-email').value, p = document.getElementById('reg-pass').value, r = document.getElementById('reg-role').value; await db.collection('users').add({ name: n, email: e, role: r }); alert("Cadastrado!"); carregarEquipe(); }
-        function closeModals() { document.querySelectorAll('.modal').forEach(m => m.style.display = 'none'); document.getElementById('preview-img').style.display = 'none'; document.getElementById('btn-confirm-task').classList.add('hidden'); }
-    </script>
-</body>
-    </html>
-                        <button onclick="salvarPerfil()">SALVAR ALTERAÇÕES</button>
-                </div>
-            </div>
-            <button onclick="showScreen('screen-choice')" class="btn-sec">Voltar</button>
-        </div>
-    </div>
-
-    <div id="screen-admin" class="screen">
-        <div class="header"><h1>GERÊNCIA</h1></div>
-        <div class="container">
-            <div style="display:flex; gap:10px; margin-bottom:20px;">
-                <button onclick="tabAdm('gestao')" id="b-gestao" style="flex:1.2; font-size:0.8rem">EQUIPE / MURAL</button>
-                <button onclick="tabAdm('fotos')" id="b-fotos" style="flex:1; background:#888; font-size:0.8rem">AUDITORIA FOTOS</button>
-            </div>
-
-            <div id="t-gestao">
-                <div class="card">
-                    <h4>Mural de Avisos</h4>
-                    <textarea id="msg-mural" placeholder="Escreva o aviso geral..."></textarea>
-                    <button onclick="postarMural()" style="background:#f39c12">POSTAR</button>
-                </div>
-                <div class="card">
-                    <h4>Novo Cadastro Manual</h4>
-                    <input type="text" id="reg-name" placeholder="Nome">
-                    <input type="email" id="reg-email" placeholder="E-mail">
-                    <input type="password" id="reg-pass" placeholder="Senha">
-                    <select id="reg-role"><option value="user">Funcionário</option><option value="admin">Gerente</option></select>
-                    <button onclick="cadastrarUsuario()">CADASTRAR</button>
-                </div>
-                <div class="card">
-                    <h4>Passar Tarefa</h4>
-                    <select id="sel-user-task"></select>
-                    <textarea id="task-desc" placeholder="O que deve ser feito?"></textarea>
-                    <button onclick="enviarTarefa()">ENVIAR TAREFA</button>
-                </div>
-                <div id="team-list"></div>
-            </div>
-
-            <div id="t-fotos" class="hidden"><div id="audit-list"></div></div>
-            <button onclick="showScreen('screen-choice')" class="btn-sec">Voltar</button>
-        </div>
-    </div>
-
-    <div id="modal-finish" class="modal">
-        <div class="modal-content">
-            <h3>Finalizar Tarefa</h3>
-            <p id="f-timer-val" style="font-weight:bold; color:var(--danger); font-size:1.2rem;"></p>
-            <div style="text-align:center; margin-bottom:15px;">
-                <img id="preview-img" style="width:100%; border-radius:15px; display:none; border: 2px solid var(--success);">
-            </div>
-            <input type="file" id="file-input" accept="image/*" capture="camera" hidden onchange="processPhoto(this)">
-            <button onclick="document.getElementById('file-input').click()" style="background:var(--dark); margin-bottom:10px;"><i class="fas fa-camera"></i> TIRAR FOTO DA PROVA</button>
-            <button id="btn-confirm-task" class="hidden" onclick="confirmarConclusao()" style="background:var(--success);">CONFIRMAR E ENVIAR</button>
-            <button onclick="closeModals()" class="btn-sec">CANCELAR</button>
-        </div>
-    </div>
-
-    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
-
-    <script>
-        const firebaseConfig = { apiKey: "AIzaSyCKq_Vv_Ju8AXxQtJrf5jmvxzN4fmVWoxA", authDomain: "sg-em-movimento.firebaseapp.com", projectId: "sg-em-movimento", storageBucket: "sg-em-movimento.firebasestorage.app", messagingSenderId: "494975014065", appId: "1:494975014065:web:948d73882c260478dcbe90" };
-        firebase.initializeApp(firebaseConfig);
-        const auth = firebase.auth(), db = firebase.firestore();
-        let activeTimers = {}, currentTask = null, photoBase64 = "", temaAtual = "#0056b3";
-
-        // MONITOR DE LOGIN (BLINDAGEM)
-        auth.onAuthStateChanged(user => {
-            if (user) {
-                db.collection('users').doc(user.uid).onSnapshot(doc => {
-                    if (doc.exists) {
-                        const d = doc.data();
-                        if(d.role === 'admin') document.getElementById('admin-area').classList.remove('hidden');
-                        if(d.tema) setTema(d.tema);
-                        document.getElementById('user-photo').src = d.foto || "https://cdn-icons-png.flaticon.com/512/149/149071.png";
-                        showScreen('screen-choice');
-                    }
-                });
-            } else { showScreen('screen-login'); }
-        });
-
-        async function handleLogin() {
-            const e = document.getElementById('email').value.trim(), p = document.getElementById('password').value;
-            try { await auth.signInWithEmailAndPassword(e, p); } catch(err) { alert("Erro de acesso."); }
-        }
-
-        // NAVEGAÇÃO
-        function showScreen(id) { document.querySelectorAll('.screen').forEach(s => s.classList.remove('active')); document.getElementById(id).classList.add('active'); }
-        function nav(m) { if(m==='admin'){showScreen('screen-admin'); carregarEquipe(); carregarAuditoria(); carregarUsuariosSelect();} else {showScreen('screen-user'); ouvirTarefas(); carregarMural();} }
-        function tab(t) { document.getElementById('t-escala').classList.toggle('hidden', t !== 'escala'); document.getElementById('t-perfil').classList.toggle('hidden', t !== 'perfil'); document.getElementById('b-escala').style.background = t === 'escala' ? 'var(--main)' : '#888'; document.getElementById('b-perfil').style.background = t === 'perfil' ? 'var(--main)' : '#888'; }
-        function tabAdm(t) { document.getElementById('t-gestao').classList.toggle('hidden', t !== 'gestao'); document.getElementById('t-fotos').classList.toggle('hidden', t !== 'fotos'); document.getElementById('b-gestao').style.background = t === 'gestao' ? 'var(--main)' : '#888'; document.getElementById('b-fotos').style.background = t === 'fotos' ? 'var(--main)' : '#888'; }
-        function setTema(cor) { temaAtual = cor; document.documentElement.style.setProperty('--main', cor); }
-        function togglePass(id) { const p = document.getElementById(id); p.type = p.type === 'password' ? 'text' : 'password'; }
-        function sair() { auth.signOut().then(() => location.reload()); }
-
-        // LÓGICA DO FUNCIONÁRIO (MÚLTIPLAS TAREFAS)
-        function ouvirTarefas() {
-            db.collection('tasks').where("uid", "==", auth.currentUser.uid).onSnapshot(snap => {
-                const list = document.getElementById('tasks-list-user'); list.innerHTML = "";
-                snap.forEach(doc => {
-                    const t = doc.data(), id = doc.id, done = t.status === 'concluida', run = t.status === 'rodando';
-                    list.innerHTML += `<div class="task-item" style="border-left-color:${done ? 'var(--success)' : (run ? 'var(--danger)' : 'var(--main)')}">
-                        <strong>${t.desc}</strong><br>
-                        ${done ? `<span style="color:var(--success); font-weight:bold;">CONCLUÍDA (${t.duration})</span>` : 
-                        (run ? `<span class="timer-val" id="timer-${id}">00:00:00</span><button onclick="abrirFim('${id}')" style="background:var(--danger)">FINALIZAR AGORA</button>` : 
-                        `<button onclick="iniciarT('${id}')" style="background:var(--success); margin-top:10px;">COMEÇAR TAREFA</button>`)}
-                    </div>`;
-                    if(run) monitorarTimer(id, t.startTime);
-                });
-            });
-        }
-        function monitorarTimer(id, start) {
-            if(activeTimers[id]) clearInterval(activeTimers[id]);
-            activeTimers[id] = setInterval(() => {
-                const diff = Date.now() - start;
-                const h = Math.floor(diff/3600000).toString().padStart(2,'0'), m = Math.floor((diff%3600000)/60000).toString().padStart(2,'0'), s = Math.floor((diff%60000)/1000).toString().padStart(2,'0');
-                const el = document.getElementById(`timer-${id}`); if(el) el.innerText = `${h}:${m}:${s}`;
-            }, 1000);
-        }
-        async function iniciarT(id) { await db.collection('tasks').doc(id).update({ status: 'rodando', startTime: Date.now() }); }
-        
-        function abrirFim(id) { currentTask = { id, time: document.getElementById(`timer-${id}`).innerText }; document.getElementById('f-timer-val').innerText = "Tempo Gasto: " + currentTask.time; document.getElementById('modal-finish').style.display='flex'; }
-        
-        // LÓGICA CORRIGIDA DO BOTÃO DE FOTO (V1 Perfeita)
-        function processPhoto(input) {
-            if (input.files && input.files[0]) {
-                document.getElementById('f-timer-val').innerText = "Processando imagem...";
-                const reader = new FileReader();
-                reader.onload = e => {
-                    photoBase64 = e.target.result;
-                    const img = document.getElementById('preview-img');
-                    img.src = photoBase64;
-                    img.style.display = 'block';
-                    document.getElementById('f-timer-val').innerText = "Tempo Gasto: " + currentTask.time;
-                    document.getElementById('btn-confirm-task').classList.remove('hidden');
-                };
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-        
-        async function confirmarConclusao() {
-            const u = await db.collection('users').doc(auth.currentUser.uid).get();
-            await db.collection('tasks').doc(currentTask.id).update({ status: 'concluida', duration: currentTask.time, photo: photoBase64, finishedAt: Date.now(), userName: u.data().name });
-            clearInterval(activeTimers[currentTask.id]); closeModals(); alert("Tarefa concluída!");
-        }
-
-        // LÓGICA DO GERENTE
-        async function carregarUsuariosSelect() {
-            const sel = document.getElementById('sel-user-task'); const snap = await db.collection('users').where("role","==","user").get();
-            sel.innerHTML = '<option value="">Selecionar Funcionário</option>'; snap.forEach(doc => sel.innerHTML += `<option value="${doc.id}">${doc.data().name}</option>`);
-        }
-        async function enviarTarefa() {
-            const uid = document.getElementById('sel-user-task').value, desc = document.getElementById('task-desc').value;
-            if(!uid || !desc) return alert("Preencha tudo!");
-            await db.collection('tasks').add({ uid, desc, status: 'pendente', createdAt: Date.now() });
-            document.getElementById('task-desc').value = ""; alert("Tarefa enviada!");
-        }
-        function carregarAuditoria() {
-            db.collection('tasks').where("status","==","concluida").orderBy("finishedAt","desc").onSnapshot(snap => {
-                const list = document.getElementById('audit-list'); list.innerHTML = "<h4>Últimas Provas Recebidas</h4>";
-                snap.forEach(doc => { const t = doc.data(); list.innerHTML += `<div class="card"><b>${t.userName}</b>: fez: ${t.desc}<br><small>Tempo: ${t.duration}</small><img src="${t.photo}" class="audit-img"></div>`; });
-            });
-        }
-        async function carregarEquipe() {
-            const list = document.getElementById('team
-        
+        async function postarMural() { await db.collection('config').doc('mural').set({ aviso: document.ge
